@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.autonomous.ReplayAuto;
 import frc.robot.commands.ArcadeDriveCommand;
 import frc.robot.subsystems.SubsystemsInstance;
-import frc.robot.values.ValuesInstance;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -27,8 +27,6 @@ public class Robot extends TimedRobot {
   private SubsystemsInstance subsystemsInst;
   private ReplayAuto replayAuto;
 
-  private IO ioInst;
-  private ValuesInstance valInst;
 
 
   /**
@@ -44,9 +42,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("scale", 0.5d);
     SmartDashboard.putNumber("zeroTurn", 0.5d);
 
-    ioInst = IO.getInstance();
 
-    valInst = ValuesInstance.getInstance();
 
     subsystemsInst = SubsystemsInstance.getInstance();
 
@@ -95,8 +91,6 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
 
     CommandScheduler.getInstance().setDefaultCommand(subsystemsInst.m_driveSubsystem, new ArcadeDriveCommand());
-    
-    ioInst.teleopInit();
   }
 
   /** This function is called periodically during operator control. */

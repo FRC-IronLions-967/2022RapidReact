@@ -63,7 +63,7 @@ public class Values {
         return Double.parseDouble(prop.getProperty(key));
     }
 
-    public int getIntValue(String key) {
-        return Integer.parseInt(prop.getProperty(key));
-    }
+    // public int getIntValue(int i) {
+    //     return Integer.parseInt(prop.getProperty(i));
+    // }
 }
