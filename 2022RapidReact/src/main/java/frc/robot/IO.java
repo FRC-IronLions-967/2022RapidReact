@@ -2,7 +2,7 @@ package frc.robot;
 
 import frc.robot.utils.controls.XBoxController;
 import frc.robot.values.ValuesInstance;
-import frc.robot.commands.*;
+//import frc.robot.commands.*;
 
 public class IO {
     private static IO instance;
@@ -21,17 +21,17 @@ public class IO {
         return instance;
     }
 
-    // this function should be run inside the Robot.teleopInit() function, and can assign commands or perform other control initialization routines
+    //this function should be run inside the Robot.teleopInit() function, and can assign commands or perform other control initialization routines
     public void teleopInit() {
-        ValuesInstance valInst = ValuesInstance.getInstance();
-
+        //ValuesInstance valInst = ValuesInstance.getInstance();
+        
         if(!ValuesInstance.isInitialized()) throw new RuntimeException("Error loading values for teleopInit() of IO");
 
-        //manipulatorController.whenButtonPressed("A", new RPMPresetCommand(valInst.m_values.getDoubleValue("defaultPresetOne")));
+        // manipulatorController.whenButtonPressed("A", new InitializeKickerCommand());
         //manipulatorController.whenButtonPressed("B", new RPMPresetCommand(valInst.m_values.getDoubleValue("defaultPresetTwo")));
-        manipulatorController.whenButtonPressed("X", new );
+        // manipulatorController.whenButtonPressed("X", new InitializeShooterCommand());
         //manipulatorController.whenButtonReleased("X", new RunFeederCommand(0.0));
-        //manipulatorController.whenButtonPressed("Y", new ToggleLEDCommand());
+        // manipulatorController.whenButtonPressed("Y", new InitializeIntakeCommand());
         //manipulatorController.whenButtonPressed("LBUMP", new RPMDownCommand());
         //manipulatorController.whenButtonPressed("RBUMP", new RPMUpCommand());
         //manipulatorController.whenButtonPressed("START", new ToggleAutoTrackingCommand());

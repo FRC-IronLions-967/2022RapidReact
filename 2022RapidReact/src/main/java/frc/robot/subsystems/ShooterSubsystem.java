@@ -1,30 +1,30 @@
-package frc.robot.subsystems;
+// package frc.robot.subsystems;
+// import edu.wpi.first.wpilibj2.command.SubsystemBase;
+// import com.revrobotics.CANSparkMax;
+// import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-public class ShooterSubsystem {
-
-
-
-
-
-  private CANSparkMax shooter;
+// public class ShooterSubsystem extends SubsystemBase{
 
 
 
 
-  public ShooterSubsystem() {
 
-    shooter = new CANSparkMax(5, MotorType.kBrushless);
-
-    shooter.setInverted(false);
-  }
+//   private CANSparkMax shooter;
 
 
-  public void startShooter(){
 
-    System.out.println("IT WORKED");
 
-  }
-}
+//   public ShooterSubsystem() {
+
+//     shooter = new CANSparkMax(5, MotorType.kBrushless);
+
+//     shooter.setInverted(false);
+//   }
+
+
+//   public void startShooter(){
+
+//     //code to make it spin
+
+//   }
+// }

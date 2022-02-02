@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.autonomous.ReplayAuto;
 import frc.robot.commands.ArcadeDriveCommand;
 import frc.robot.subsystems.SubsystemsInstance;
+import frc.robot.values.ValuesInstance;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,6 +27,10 @@ public class Robot extends TimedRobot {
   private SubsystemsInstance subsystemsInst;
   private ReplayAuto replayAuto;
 
+  private IO ioInst;
+  private ValuesInstance valInst;
+
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -38,7 +43,13 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("maxAccel", 0.02d);
     SmartDashboard.putNumber("scale", 0.5d);
     SmartDashboard.putNumber("zeroTurn", 0.5d);
+
+    ioInst = IO.getInstance();
+
+    valInst = ValuesInstance.getInstance();
+
     subsystemsInst = SubsystemsInstance.getInstance();
+
     replayAuto = new ReplayAuto("/home/lvuser/recordings/recording_1_15_14:54:11.csv");
   }
 
@@ -52,9 +63,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-
-
-
   }
 
   /**
@@ -87,11 +95,16 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
 
     CommandScheduler.getInstance().setDefaultCommand(subsystemsInst.m_driveSubsystem, new ArcadeDriveCommand());
+    
+    ioInst.teleopInit();
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+
+
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override

@@ -30,9 +30,9 @@ public class Values {
 
     public Values(String path) throws IOException {
         file = new File(path);
-        prop = new Properties();
-        input = new FileInputStream(file);
-        prop.load(input);
+       // prop = new Properties();
+        //input = new FileInputStream(file);
+        //prop.load(input);
         autoValues = null;
     }
 
