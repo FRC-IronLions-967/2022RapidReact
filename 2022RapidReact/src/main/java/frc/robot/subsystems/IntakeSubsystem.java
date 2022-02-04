@@ -13,6 +13,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private IO ioInst;
   private TalonSRX intake;
+  private double changePercOut = 0.3;
 
   public IntakeSubsystem() {
     ioInst = IO.getInstance();
@@ -30,14 +31,23 @@ public class IntakeSubsystem extends SubsystemBase {
     
     try{
       if (ioInst.getManipulatorController().isTriggerPressed(XBoxController.LEFT_TRIGGER)) {
-        intake.set(ControlMode.PercentOutput, 0.3);
+        intake.set(ControlMode.PercentOutput, changePercOut);
       } else {
         intake.set(ControlMode.PercentOutput, 0.0);
       }
     }catch(Exception e){
       DriverStation.reportError(e.getMessage(), e.getStackTrace());
     }
-    
-    
+        
   }
+
+  public void lowerPercentOutput(double lessAmount){
+    changePercOut -= lessAmount;
+  }
+
+  public void addPercentOutput(double addAmount){
+    changePercOut += addAmount;
+  }
+
+
 }
