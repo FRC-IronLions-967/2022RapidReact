@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-import frc.robot.values.ValuesInstance;
+// import frc.robot.values.ValuesInstance;
 
 public class SubsystemsInstance {
     public DriveSubsystem m_driveSubsystem;
@@ -15,12 +15,12 @@ public class SubsystemsInstance {
 
     private SubsystemsInstance() {
 
-        // attempt to initialize the ValuesInstance class
-        ValuesInstance.getInstance();
+        // // attempt to initialize the ValuesInstance class
+        // ValuesInstance.getInstance();
 
-        // if the initialization fails, let the user know
-        if (!ValuesInstance.isInitialized())
-            //throw new RuntimeException("Error loading values for subsystems");
+        // // if the initialization fails, let the user know
+        // if (!ValuesInstance.isInitialized())
+        //     //throw new RuntimeException("Error loading values for subsystems");
 
         m_driveSubsystem = new DriveSubsystem();
         // m_shooterSubsystem = new ShooterSubsystem();
