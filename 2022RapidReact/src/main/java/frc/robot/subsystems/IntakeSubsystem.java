@@ -26,9 +26,23 @@ public class IntakeSubsystem extends SubsystemBase {
 
   }
 
+  public void lowerPercentOutput(double lessAmount){
+    changePercOut -= lessAmount;
+  }
+
+  public void addPercentOutput(double addAmount){
+    changePercOut += addAmount;
+  }
+
+  public void resetPercentOutput(){
+    changePercOut = 0.3;
+  }
+
   @Override
   public void periodic() {
+
     
+
     try{
       if (ioInst.getManipulatorController().isTriggerPressed(XBoxController.LEFT_TRIGGER)) {
         intake.set(ControlMode.PercentOutput, changePercOut);
@@ -40,14 +54,5 @@ public class IntakeSubsystem extends SubsystemBase {
     }
         
   }
-
-  public void lowerPercentOutput(double lessAmount){
-    changePercOut -= lessAmount;
-  }
-
-  public void addPercentOutput(double addAmount){
-    changePercOut += addAmount;
-  }
-
-
 }
+

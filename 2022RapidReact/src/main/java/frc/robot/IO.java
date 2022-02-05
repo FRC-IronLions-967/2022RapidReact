@@ -1,6 +1,11 @@
 package frc.robot;
 
+import frc.robot.commands.DecreaseIntakeCommand;
+import frc.robot.commands.IncreaseIntakeCommand;
+import frc.robot.commands.ResetIntakeCommand;
 import frc.robot.utils.controls.XBoxController;
+
+
 
 //import frc.robot.commands.*;
 
@@ -21,25 +26,22 @@ public class IO {
         return instance;
     }
 
-    //this function should be run inside the Robot.teleopInit() function, and can assign commands or perform other control initialization routines
-    // public void teleopInit() {
-    //     //ValuesInstance valInst = ValuesInstance.getInstance();
+    // this function should be run inside the Robot.teleopInit() function, and can assign commands or perform other control initialization routines
+    public void teleopInit() {
         
-    //     if(!ValuesInstance.isInitialized()) throw new RuntimeException("Error loading values for teleopInit() of IO");
-
-    //     // manipulatorController.whenButtonPressed("A", new InitializeKickerCommand());
-    //     //manipulatorController.whenButtonPressed("B", new RPMPresetCommand(valInst.m_values.getDoubleValue("defaultPresetTwo")));
-    //     // manipulatorController.whenButtonPressed("X", new InitializeShooterCommand());
-    //     //manipulatorController.whenButtonReleased("X", new RunFeederCommand(0.0));
-    //     // manipulatorController.whenButtonPressed("Y", new InitializeIntakeCommand());
-    //     //manipulatorController.whenButtonPressed("LBUMP", new RPMDownCommand());
-    //     //manipulatorController.whenButtonPressed("RBUMP", new RPMUpCommand());
-    //     //manipulatorController.whenButtonPressed("START", new ToggleAutoTrackingCommand());
-    //     //manipulatorController.whenPOVButtonPressed("W", new ToggleIntakeCommand());
-    //     //manipulatorController.whenPOVButtonPressed("N", new ChangeAngleCommand(-10.0));
-    //     //manipulatorController.whenPOVButtonPressed("S", new ChangeAngleCommand(10.0));
+        // manipulatorController.whenButtonPressed("A", new InitializeKickerCommand());
+        //manipulatorController.whenButtonPressed("B", new RPMPresetCommand(valInst.m_values.getDoubleValue("defaultPresetTwo")));
+        // manipulatorController.whenButtonPressed("X", new InitializeShooterCommand());
+        manipulatorController.whenButtonPressed("X", new ResetIntakeCommand());
+        // manipulatorController.whenButtonPressed("Y", new InitializeIntakeCommand());
+        manipulatorController.whenButtonPressed("LBUMP", new DecreaseIntakeCommand());
+        manipulatorController.whenButtonPressed("RBUMP", new IncreaseIntakeCommand());
+        //manipulatorController.whenButtonPressed("START", new ToggleAutoTrackingCommand());
+        //manipulatorController.whenPOVButtonPressed("W", new ToggleIntakeCommand());
+        //manipulatorController.whenPOVButtonPressed("N", new ChangeAngleCommand(-10.0));
+        //manipulatorController.whenPOVButtonPressed("S", new ChangeAngleCommand(10.0));
         
-    // }
+    }
 
     public XBoxController getDriverController() {
         return driverController;
