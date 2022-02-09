@@ -13,7 +13,6 @@ public class ElevatorSubsystem extends SubsystemBase {
 
 //   private IO ioInst;
   private TalonSRX elevator;
-  private boolean elevatorOn = false;
 
 
 public ElevatorSubsystem() {
@@ -23,8 +22,9 @@ public ElevatorSubsystem() {
     elevator.setInverted(false);
   }
 
-  public void startElevator() {
-    elevatorOn = (elevatorOn) ? false : true;
+
+  public void startElevator(double speed) {
+    elevator.set(ControlMode.PercentOutput, speed);
   }
   
 
@@ -32,11 +32,7 @@ public ElevatorSubsystem() {
   @Override
   public void periodic() {
 
-    if(elevatorOn) {
-        elevator.set(ControlMode.PercentOutput, 0.30);
-      } else {
-        elevator.set(ControlMode.PercentOutput, 0.0);
-      }
-}
+    
 
+}
 }
