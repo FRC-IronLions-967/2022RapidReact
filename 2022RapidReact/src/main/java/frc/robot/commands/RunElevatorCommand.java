@@ -6,16 +6,16 @@ import frc.robot.subsystems.SubsystemsInstance;
 
 public class RunElevatorCommand extends CommandBase {
   /** Creates a new ArcadeDriveCommand. */
-  private boolean done = false;
+  private double speed;
   private SubsystemsInstance inst;
 
 
-  public RunElevatorCommand() {
+  public RunElevatorCommand(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     inst = SubsystemsInstance.getInstance();
     addRequirements(inst.m_elevatorSubsystem);
 
-
+    this.speed = speed;
   }
   // Called when the command is initially scheduled.
   @Override
@@ -24,8 +24,7 @@ public class RunElevatorCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_elevatorSubsystem.startElevator();
-    done = true;
+    inst.m_elevatorSubsystem.startElevator(speed);
   }
 
   // Called once the command ends or is interrupted.
@@ -36,6 +35,6 @@ public class RunElevatorCommand extends CommandBase {
   @Override
   public boolean isFinished() {
 
-    return done;
+    return false;
   }
 }

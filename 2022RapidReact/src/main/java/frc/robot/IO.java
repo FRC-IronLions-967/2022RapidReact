@@ -2,12 +2,12 @@ package frc.robot;
 
 //import frc.robot.commands.DecreaseIntakeCommand;
 //import frc.robot.commands.ResetIntakeCommand;
-import frc.robot.commands.RunElevatorCommand;
+
 import frc.robot.utils.controls.XBoxController;
 
 
 
-// import frc.robot.commands.*;
+import frc.robot.commands.*;
 
 public class IO {
     private static IO instance;
@@ -31,8 +31,8 @@ public class IO {
         
         // manipulatorController.whenButtonPressed("A", new InitializeKickerCommand());
         //manipulatorController.whenButtonPressed("B", new RPMPresetCommand(valInst.m_values.getDoubleValue("defaultPresetTwo")));
-        // manipulatorController.whenButtonPressed("X", new InitializeShooterCommand());
-        manipulatorController.whenButtonPressed("X", new RunElevatorCommand());
+        manipulatorController.whenButtonPressed("X", new RunElevatorCommand(0.3));
+        manipulatorController.whenButtonReleased("X", new RunElevatorCommand(0.0));
         // manipulatorController.whenButtonPressed("Y", new InitializeIntakeCommand());
         //manipulatorController.whenButtonPressed("LBUMP", new DecreaseIntakeCommand());
         //manipulatorController.whenButtonPressed("RBUMP", new IncreaseIntakeCommand());
