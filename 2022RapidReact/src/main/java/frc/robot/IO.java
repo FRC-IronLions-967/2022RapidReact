@@ -1,13 +1,13 @@
 package frc.robot;
 
-import frc.robot.commands.DecreaseIntakeCommand;
-import frc.robot.commands.IncreaseIntakeCommand;
-import frc.robot.commands.ResetIntakeCommand;
+//import frc.robot.commands.DecreaseIntakeCommand;
+//import frc.robot.commands.ResetIntakeCommand;
+import frc.robot.commands.RunElevatorCommand;
 import frc.robot.utils.controls.XBoxController;
 
 
 
-//import frc.robot.commands.*;
+// import frc.robot.commands.*;
 
 public class IO {
     private static IO instance;
@@ -32,10 +32,10 @@ public class IO {
         // manipulatorController.whenButtonPressed("A", new InitializeKickerCommand());
         //manipulatorController.whenButtonPressed("B", new RPMPresetCommand(valInst.m_values.getDoubleValue("defaultPresetTwo")));
         // manipulatorController.whenButtonPressed("X", new InitializeShooterCommand());
-        manipulatorController.whenButtonPressed("X", new ResetIntakeCommand());
+        manipulatorController.whenButtonPressed("X", new RunElevatorCommand());
         // manipulatorController.whenButtonPressed("Y", new InitializeIntakeCommand());
-        manipulatorController.whenButtonPressed("LBUMP", new DecreaseIntakeCommand());
-        manipulatorController.whenButtonPressed("RBUMP", new IncreaseIntakeCommand());
+        //manipulatorController.whenButtonPressed("LBUMP", new DecreaseIntakeCommand());
+        //manipulatorController.whenButtonPressed("RBUMP", new IncreaseIntakeCommand());
         //manipulatorController.whenButtonPressed("START", new ToggleAutoTrackingCommand());
         //manipulatorController.whenPOVButtonPressed("W", new ToggleIntakeCommand());
         //manipulatorController.whenPOVButtonPressed("N", new ChangeAngleCommand(-10.0));
