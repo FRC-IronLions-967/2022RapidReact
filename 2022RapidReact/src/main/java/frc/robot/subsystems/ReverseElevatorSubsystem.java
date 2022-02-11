@@ -7,7 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ElevatorSubsystem extends SubsystemBase {
+public class ReverseElevatorSubsystem extends SubsystemBase {
 
   private TalonSRX outRightElevator;
   // private TalonSRX outLeftElevator;
@@ -15,7 +15,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   // private TalonSRX inRightElevator;
   // private TalonSRX inLeftElevator;
 
-  public ElevatorSubsystem() {
+  public ReverseElevatorSubsystem() {
 
     outRightElevator = new TalonSRX(6);
     // outLeftElevator = new TalonSRX(7);
@@ -31,7 +31,6 @@ public class ElevatorSubsystem extends SubsystemBase {
     // inRightElevator.setInverted(false);
     // inLeftElevator.setInverted(false);
   }
-
 
 
   public void startAngleElevator(double speed) {
