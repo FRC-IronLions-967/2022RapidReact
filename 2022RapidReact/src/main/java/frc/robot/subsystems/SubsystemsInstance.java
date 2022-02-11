@@ -8,7 +8,7 @@ public class SubsystemsInstance {
     public DriveSubsystem m_driveSubsystem;
 
     // public ShooterSubsystem m_shooterSubsystem;
-    public ReverseElevatorSubsystem m_reverseElevatorSubsystem;
+    // public ReverseElevatorSubsystem m_reverseElevatorSubsystem;
     public ElevatorSubsystem m_elevatorSubsystem;
 
     private static SubsystemsInstance inst;
@@ -24,12 +24,12 @@ public class SubsystemsInstance {
 
         m_driveSubsystem = new DriveSubsystem();
         // m_shooterSubsystem = new ShooterSubsystem();
-        m_reverseElevatorSubsystem = new ReverseElevatorSubsystem();
+        // m_reverseElevatorSubsystem = new ReverseElevatorSubsystem();
         m_elevatorSubsystem = new ElevatorSubsystem();
 
         CommandScheduler.getInstance().registerSubsystem(m_driveSubsystem);
         //CommandScheduler.getInstance().registerSubsystem(m_shooterSubsystem);
-        CommandScheduler.getInstance().registerSubsystem(m_reverseElevatorSubsystem);
+        // CommandScheduler.getInstance().registerSubsystem(m_reverseElevatorSubsystem);
         CommandScheduler.getInstance().registerSubsystem(m_elevatorSubsystem);
     }
 

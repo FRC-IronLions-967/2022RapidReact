@@ -1,50 +1,50 @@
-package frc.robot.subsystems;
+// package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-//import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-//import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+// import com.ctre.phoenix.motorcontrol.ControlMode;
+// //import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+// //import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+// import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ReverseElevatorSubsystem extends SubsystemBase {
+// public class ReverseElevatorSubsystem extends SubsystemBase {
 
-  private TalonSRX outRightElevator;
-  // private TalonSRX outLeftElevator;
+//   private TalonSRX outRightElevator;
+//   private TalonSRX outLeftElevator;
 
-  // private TalonSRX inRightElevator;
-  // private TalonSRX inLeftElevator;
+//   private TalonSRX inRightElevator;
+//   private TalonSRX inLeftElevator;
 
-  public ReverseElevatorSubsystem() {
+//   public ReverseElevatorSubsystem() {
 
-    outRightElevator = new TalonSRX(6);
-    // outLeftElevator = new TalonSRX(7);
+//     outRightElevator = new TalonSRX(6);
+//     outLeftElevator = new TalonSRX(7);
 
-    // inRightElevator = new TalonSRX(8);
-    // inLeftElevator = new TalonSRX(9);
-
-
-
-    outRightElevator.setInverted(false);
-    // outLeftElevator.setInverted(false);
-
-    // inRightElevator.setInverted(false);
-    // inLeftElevator.setInverted(false);
-  }
+//     inRightElevator = new TalonSRX(8);
+//     inLeftElevator = new TalonSRX(9);
 
 
-  public void startAngleElevator(double speed) {
-    outRightElevator.set(ControlMode.PercentOutput, speed);
-    // outLeftElevator.set(ControlMode.PercentOutput, speed);
-  }
 
-  public void startVerticalElevator(double speed){
-    // inRightElevator.set(ControlMode.PercentOutput, speed);
-    // inLeftElevator.set(ControlMode.PercentOutput, speed);
-  }
+//     outRightElevator.setInverted(false);
+//     outLeftElevator.setInverted(false);
 
-  @Override
-  public void periodic() {
+//     inRightElevator.setInverted(false);
+//     inLeftElevator.setInverted(false);
+//   }
 
-  }
-}
+
+//   public void startAngleElevator(double speed) {
+//     outRightElevator.set(ControlMode.PercentOutput, speed);
+//     outLeftElevator.set(ControlMode.PercentOutput, speed);
+//   }
+
+//   public void startVerticalElevator(double speed){
+//     inRightElevator.set(ControlMode.PercentOutput, speed);
+//     inLeftElevator.set(ControlMode.PercentOutput, speed);
+//   }
+
+//   @Override
+//   public void periodic() {
+
+//   }
+// }

@@ -14,7 +14,7 @@ public class ReverseAngleElevatorCommand extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     
     inst = SubsystemsInstance.getInstance();
-    addRequirements(inst.m_reverseElevatorSubsystem);
+    addRequirements(inst.m_elevatorSubsystem);
 
     this.speed = speed;
   }
@@ -28,7 +28,7 @@ public class ReverseAngleElevatorCommand extends CommandBase {
   @Override
   public void execute() {
     System.out.println("Command Elevator is excuting");
-    inst.m_reverseElevatorSubsystem.startAngleElevator(speed);
+    inst.m_elevatorSubsystem.retrackAngleElevator(speed);
   }
 
   // Called once the command ends or is interrupted.
