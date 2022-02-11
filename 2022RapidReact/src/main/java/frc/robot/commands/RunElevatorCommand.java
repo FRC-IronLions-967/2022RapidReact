@@ -12,6 +12,7 @@ public class RunElevatorCommand extends CommandBase {
 
   public RunElevatorCommand(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
+    
     inst = SubsystemsInstance.getInstance();
     addRequirements(inst.m_elevatorSubsystem);
 
@@ -19,11 +20,14 @@ public class RunElevatorCommand extends CommandBase {
   }
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize(){
+    System.out.println("Command has been initalize");
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println("Command Elevator is excuting");
     inst.m_elevatorSubsystem.startElevator(speed);
   }
 

@@ -89,7 +89,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-
+    IO.getInstance().teleopInit();
     CommandScheduler.getInstance().setDefaultCommand(subsystemsInst.m_driveSubsystem, new ArcadeDriveCommand());
     
   }
