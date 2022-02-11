@@ -22,12 +22,13 @@ public class IO {
 
     // this function should be run inside the Robot.teleopInit() function, and can assign commands or perform other control initialization routines
     public void teleopInit() {
-        // new RunElevatorCommand(0.3);
+  
         // manipulatorController.whenButtonPressed("A", new InitializeKickerCommand());
         //manipulatorController.whenButtonPressed("B", new RPMPresetCommand(valInst.m_values.getDoubleValue("defaultPresetTwo")));
-        manipulatorController.whenButtonPressed("X", new RunElevatorCommand(0.3));
-        manipulatorController.whenButtonReleased("X", new RunElevatorCommand(0.0));
-        // manipulatorController.whenButtonPressed("Y", new InitializeIntakeCommand());
+        manipulatorController.whenButtonPressed("X", new RunAngleElevatorCommand(0.3));
+        manipulatorController.whenButtonReleased("X", new RunAngleElevatorCommand(0.0));
+        manipulatorController.whenButtonPressed("Y", new RunVerticalElevatorCommand(0.3));
+        manipulatorController.whenButtonReleased("Y", new RunVerticalElevatorCommand(0.0));
         //manipulatorController.whenButtonPressed("LBUMP", new DecreaseIntakeCommand());
         //manipulatorController.whenButtonPressed("RBUMP", new IncreaseIntakeCommand());
         //manipulatorController.whenButtonPressed("START", new ToggleAutoTrackingCommand());

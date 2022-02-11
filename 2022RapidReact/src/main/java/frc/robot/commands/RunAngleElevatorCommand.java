@@ -4,13 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.SubsystemsInstance;
 
-public class RunElevatorCommand extends CommandBase {
+public class RunAngleElevatorCommand extends CommandBase {
 
   private double speed;
   private SubsystemsInstance inst;
 
 
-  public RunElevatorCommand(double speed) {
+  public RunAngleElevatorCommand(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     
     inst = SubsystemsInstance.getInstance();
@@ -28,7 +28,7 @@ public class RunElevatorCommand extends CommandBase {
   @Override
   public void execute() {
     System.out.println("Command Elevator is excuting");
-    inst.m_elevatorSubsystem.startElevator(speed);
+    inst.m_elevatorSubsystem.startAngleElevator(speed);
   }
 
   // Called once the command ends or is interrupted.

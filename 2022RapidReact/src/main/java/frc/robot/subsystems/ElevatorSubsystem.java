@@ -5,34 +5,45 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 //import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-// import frc.robot.IO;
 
 public class ElevatorSubsystem extends SubsystemBase {
 
-//   private IO ioInst;
-  private TalonSRX elevator;
+  private TalonSRX outRightElevator;
+  private TalonSRX outLeftElevator;
+
+  private TalonSRX inRightElevator;
+  private TalonSRX inLeftElevator;
+
+  public ElevatorSubsystem() {
+
+    outRightElevator = new TalonSRX(6);
+    outLeftElevator = new TalonSRX(7);
+
+    inRightElevator = new TalonSRX(8);
+    inLeftElevator = new TalonSRX(9);
 
 
-public ElevatorSubsystem() {
-    // ioInst = IO.getInstance();
-    elevator = new TalonSRX(6);
 
-    elevator.setInverted(false);
+    outRightElevator.setInverted(false);
+    outLeftElevator.setInverted(false);
+
+    inRightElevator.setInverted(false);
+    inLeftElevator.setInverted(false);
   }
 
-
-  public void startElevator(double speed) {
-    elevator.set(ControlMode.PercentOutput, speed);
+  public void startAngleElevator(double speed) {
+    outRightElevator.set(ControlMode.PercentOutput, speed);
+    outLeftElevator.set(ControlMode.PercentOutput, speed);
   }
-  
 
+  public void startVerticalElevator(double speed){
+    inRightElevator.set(ControlMode.PercentOutput, speed);
+    inLeftElevator.set(ControlMode.PercentOutput, speed);
+  }
 
   @Override
   public void periodic() {
 
-    
-
-}
+  }
 }
