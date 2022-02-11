@@ -1,12 +1,6 @@
 package frc.robot;
 
-//import frc.robot.commands.DecreaseIntakeCommand;
-//import frc.robot.commands.ResetIntakeCommand;
-
 import frc.robot.utils.controls.XBoxController;
-
-
-
 import frc.robot.commands.*;
 
 public class IO {
