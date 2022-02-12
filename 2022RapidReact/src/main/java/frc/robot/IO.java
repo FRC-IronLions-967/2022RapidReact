@@ -27,9 +27,9 @@ public class IO {
         manipulatorController.whenButtonReleased("X", new ReverseAngleElevatorCommand(0.0));
         manipulatorController.whenButtonPressed("A", new ReverseVerticalElevatorCommand(-0.3));
         manipulatorController.whenButtonReleased("A", new ReverseVerticalElevatorCommand(0.0));
-        manipulatorController.whenButtonPressed("B", new RunAngleElevatorCommand(-0.3));
+        manipulatorController.whenButtonPressed("B", new RunAngleElevatorCommand(1.0));
         manipulatorController.whenButtonReleased("B", new RunAngleElevatorCommand(0.0));
-        manipulatorController.whenButtonPressed("Y", new RunVerticalElevatorCommand(-0.3));
+        manipulatorController.whenButtonPressed("Y", new RunVerticalElevatorCommand(1.0));
         manipulatorController.whenButtonReleased("Y", new RunVerticalElevatorCommand(0.0));
         //manipulatorController.whenButtonPressed("LBUMP", new DecreaseIntakeCommand());
         //manipulatorController.whenButtonPressed("RBUMP", new IncreaseIntakeCommand());

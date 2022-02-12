@@ -3,17 +3,21 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 // import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
 //import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ElevatorSubsystem extends SubsystemBase {
 
-  private TalonSRX outRightElevator;
-  private TalonSRX ignoreOutRight;
+  public TalonSRX outRightElevator;
+
+  private SensorCollection outRightCollection;
 
   // private TalonSRX outLeftElevator;
 
@@ -23,8 +27,9 @@ public class ElevatorSubsystem extends SubsystemBase {
   public ElevatorSubsystem() {
 
     outRightElevator = new TalonSRX(6);
-    outRightElevator.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,LimitSwitchNormal.NormallyOpen);
-    ignoreOutRight = new TalonSRX(6);
+    outRightElevator.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,LimitSwitchNormal.Disabled);
+    outRightCollection = new SensorCollection(outRightElevator);
+
     
     // outLeftElevator = new TalonSRX(7);
 
@@ -36,12 +41,19 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     // inRightElevator.setInverted(false);
     // inLeftElevator.setInverted(false);
+
   }
 
   public void startAngleElevator(double speed) {
+    
+    if (outRightCollection.isFwdLimitSwitchClosed()){
+    outRightElevator.setNeutralMode(NeutralMode.Brake);
+      outRightElevator.set(ControlMode.PercentOutput, 0.0);
+  }else{
+    // outRightElevator.setNeutralMode(NeutralMode.Coast);
     outRightElevator.set(ControlMode.PercentOutput, speed);
     // outLeftElevator.set(ControlMode.PercentOutput, speed);
-
+    }
   }
 
   // help.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
@@ -63,7 +75,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     //   inRightElevator.set(ControlMode.PercentOutput, 0.0);
 
     // } else {
-    ignoreOutRight.set(ControlMode.PercentOutput, speed);
+    outRightElevator.set(ControlMode.PercentOutput, speed);
     //   outLeftElevator.set(ControlMode.PercentOutput, speed);
     // }
   }
@@ -81,6 +93,7 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-
+    SmartDashboard.putBoolean("Forward Limit Switch", outRightCollection.isFwdLimitSwitchClosed());
+    SmartDashboard.putBoolean("Reverse Limit Switch", outRightCollection.isRevLimitSwitchClosed());
   }
 }
