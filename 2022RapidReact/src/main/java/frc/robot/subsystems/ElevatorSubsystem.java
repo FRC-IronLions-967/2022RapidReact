@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ElevatorSubsystem extends SubsystemBase {
 
   private TalonSRX outRightElevator;
+  private TalonSRX ignoreOutRight;
+
   // private TalonSRX outLeftElevator;
 
   // private TalonSRX inRightElevator;
@@ -22,6 +24,8 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     outRightElevator = new TalonSRX(6);
     outRightElevator.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,LimitSwitchNormal.NormallyOpen);
+    ignoreOutRight = new TalonSRX(6);
+    
     // outLeftElevator = new TalonSRX(7);
 
     // inRightElevator = new TalonSRX(8);
@@ -59,7 +63,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     //   inRightElevator.set(ControlMode.PercentOutput, 0.0);
 
     // } else {
-    //   outRightElevator.set(ControlMode.PercentOutput, speed);
+    ignoreOutRight.set(ControlMode.PercentOutput, speed);
     //   outLeftElevator.set(ControlMode.PercentOutput, speed);
     // }
   }
