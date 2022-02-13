@@ -25,7 +25,8 @@ public class ReverseAngleElevatorCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_elevatorSubsystem.retrackAngleElevator(speed);
+    inst.m_elevatorSubsystem.retrackRightAngleElevator(speed);
+    inst.m_elevatorSubsystem.retrackLeftAngleElevator(speed);
   }
 
   // Called once the command ends or is interrupted.

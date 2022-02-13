@@ -2,13 +2,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-// import frc.robot.values.ValuesInstance;
 
 public class SubsystemsInstance {
     public DriveSubsystem m_driveSubsystem;
 
-    // public ShooterSubsystem m_shooterSubsystem;
-    // public ReverseElevatorSubsystem m_reverseElevatorSubsystem;
+    public ShooterSubsystem m_shooterSubsystem;
     public ElevatorSubsystem m_elevatorSubsystem;
 
     private static SubsystemsInstance inst;
@@ -23,8 +21,7 @@ public class SubsystemsInstance {
         //     //throw new RuntimeException("Error loading values for subsystems");
 
         m_driveSubsystem = new DriveSubsystem();
-        // m_shooterSubsystem = new ShooterSubsystem();
-        // m_reverseElevatorSubsystem = new ReverseElevatorSubsystem();
+        m_shooterSubsystem = new ShooterSubsystem();
         m_elevatorSubsystem = new ElevatorSubsystem();
 
         CommandScheduler.getInstance().registerSubsystem(m_driveSubsystem);

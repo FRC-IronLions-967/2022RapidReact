@@ -25,7 +25,8 @@ public class RunVerticalElevatorCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_elevatorSubsystem.startVerticalElevator(speed);
+    inst.m_elevatorSubsystem.startRightVerticalElevator(speed);
+    inst.m_elevatorSubsystem.startLeftVerticalElevator(speed);
   }
 
   // Called once the command ends or is interrupted.
