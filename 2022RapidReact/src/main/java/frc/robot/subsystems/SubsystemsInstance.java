@@ -8,6 +8,7 @@ public class SubsystemsInstance {
 
     public ShooterSubsystem m_shooterSubsystem;
     public ElevatorSubsystem m_elevatorSubsystem;
+    public RollerSubsystem m_rollerSubsystem;
 
     private static SubsystemsInstance inst;
 
@@ -21,12 +22,15 @@ public class SubsystemsInstance {
         //     //throw new RuntimeException("Error loading values for subsystems");
 
         m_driveSubsystem = new DriveSubsystem();
+
         m_shooterSubsystem = new ShooterSubsystem();
         m_elevatorSubsystem = new ElevatorSubsystem();
+        m_rollerSubsystem = new RollerSubsystem();
 
         CommandScheduler.getInstance().registerSubsystem(m_driveSubsystem);
-        //CommandScheduler.getInstance().registerSubsystem(m_shooterSubsystem);
-        // CommandScheduler.getInstance().registerSubsystem(m_reverseElevatorSubsystem);
+        
+        CommandScheduler.getInstance().registerSubsystem(m_shooterSubsystem);
+        CommandScheduler.getInstance().registerSubsystem(m_rollerSubsystem);
         CommandScheduler.getInstance().registerSubsystem(m_elevatorSubsystem);
     }
 
