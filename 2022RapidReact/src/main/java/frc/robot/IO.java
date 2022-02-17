@@ -31,12 +31,12 @@ public class IO {
         manipulatorController.whenButtonReleased("B", new ReverseRollerCommand(0.0));
         manipulatorController.whenButtonPressed("Y", new ReverseShooterCommand(1.0));
         manipulatorController.whenButtonReleased("Y", new ReverseShooterCommand(1.0));
-        // manipulatorController.whenButtonPressed("LBUMP", new DecreaseShooterCommand());
-        // manipulatorController.whenButtonPressed("RBUMP", new IncreaseShooterCommand());
-        // manipulatorController.whenButtonPressed("START", new ActivateFlyWheelCommand());
-        // manipulatorController.whenButtonPressed("SELECT", new ActivateFlyWheelCommand());
-        // manipulatorController.whenPOVButtonPressed("N", new Retrack Rollers());
-        // manipulatorController.whenPOVButtonPressed("S", new Engage Rollers());
+        manipulatorController.whenButtonPressed("LBUMP", new DecreaseShooterCommand());
+        manipulatorController.whenButtonPressed("RBUMP", new IncreaseShooterCommand());
+        manipulatorController.whenButtonPressed("START", new ActivateFlyWheelCommand());
+        manipulatorController.whenButtonPressed("SELECT", new DeactivateFlyWheelCommand());
+        manipulatorController.whenPOVButtonPressed("N", new RetrackRollerCommand());
+        manipulatorController.whenPOVButtonPressed("S", new EngageRollerCommand());
         
     }
 
