@@ -6,7 +6,7 @@ import frc.robot.subsystems.SubsystemsInstance;
 
 public class DecreaseShooterCommand extends CommandBase {
 
-  private double decreaseRPM = 0.1;
+  private double decreaseRPM =  0.1;
   private SubsystemsInstance inst;
 
 
@@ -24,7 +24,7 @@ public class DecreaseShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_shooterSubsystem.decreaseFlywheelRPM(decreaseRPM);
+    inst.m_shooterSubsystem.decreaseKickerRPM(decreaseRPM);
   }
 
   // Called once the command ends or is interrupted.

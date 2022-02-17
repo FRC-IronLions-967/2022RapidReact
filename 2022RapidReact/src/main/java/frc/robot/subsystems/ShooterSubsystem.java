@@ -1,55 +1,47 @@
 package frc.robot.subsystems;
 
 //import com.ctre.phoenix.motorcontrol.ControlMode;
-// import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-// import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-    private CANSparkMax flywheel;
-    private double flySpeed = 0.5;
+    private double changeRPM = 0.0;
+    private double mainRPM = 0.0;
+    private VictorSPX kicker;
 
     public ShooterSubsystem() {
-        flywheel = new CANSparkMax(5, MotorType.kBrushless);
+        kicker = new VictorSPX(11);
 
-        flywheel.setInverted(false);
+        kicker.setInverted(false);
     }
 
-    public void increaseFlywheelRPM(double speed) {
-        if (flySpeed >= 1) {
-            flySpeed = 1;
-        } else {
-            flySpeed += speed;
-        }
+    public void increaseKickerRPM(double increaseRPM) {
+        changeRPM += increaseRPM;
     }
 
-    public void decreaseFlywheelRPM(double speed) {
-        if (flySpeed <= 0.1) {
-            flySpeed = 0.1;
-        } else {
-            flySpeed -= speed;
-        }
+    public void decreaseKickerRPM(double decreaseRPM) {
+        changeRPM -= decreaseRPM;
     }
 
-    public void activateFlywheel(int controlSwitch) {
-        if (controlSwitch > 0) {
-            flywheel.set(flySpeed);
-        } else {
-            flywheel.set(0.0);
+    public void runKickerFwd(double speed) {
+        mainRPM = speed;
+        mainRPM += changeRPM;
+        if (mainRPM > 1.0) {
+            mainRPM = 1.0;
+        } else if (mainRPM < 0.1) {
+            mainRPM = 0.1;
         }
+
+        kicker.set(VictorSPXControlMode.PercentOutput, mainRPM);
+    }
+
+    public void runKickerRev(double speed) {
+        kicker.set(VictorSPXControlMode.PercentOutput, speed);
     }
 
     @Override
     public void periodic() {
-
-        SmartDashboard.putNumber("Right Current", flywheel.getOutputCurrent());
-        SmartDashboard.putNumber("Right RPM", flywheel.getEncoder().getVelocity());
-
     }
-
 }

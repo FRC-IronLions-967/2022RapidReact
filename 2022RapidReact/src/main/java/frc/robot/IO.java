@@ -23,21 +23,20 @@ public class IO {
     // this function should be run inside the Robot.teleopInit() function, and can assign commands or perform other control initialization routines
     public void teleopInit() {
   
-        manipulatorController.whenButtonPressed("X", new ReverseAngleElevatorCommand(0.3));
-        //Never make the command above negitive
-        manipulatorController.whenButtonReleased("X", new ReverseAngleElevatorCommand(0.0));
-        manipulatorController.whenButtonPressed("A", new ReverseVerticalElevatorCommand(-0.3));
-        manipulatorController.whenButtonReleased("A", new ReverseVerticalElevatorCommand(0.0));
-        manipulatorController.whenButtonPressed("B", new RunAngleElevatorCommand(0.5));
-        manipulatorController.whenButtonReleased("B", new RunAngleElevatorCommand(0.0));
-        manipulatorController.whenButtonPressed("Y", new RunVerticalElevatorCommand(0.5));
-        manipulatorController.whenButtonReleased("Y", new RunVerticalElevatorCommand(0.0));
-        manipulatorController.whenButtonPressed("LBUMP", new DecreaseShooterCommand());
-        manipulatorController.whenButtonPressed("RBUMP", new IncreaseShooterCommand());
-        manipulatorController.whenButtonPressed("START", new ActivateShooterCommand());
-        //manipulatorController.whenPOVButtonPressed("W", new ToggleIntakeCommand());
-        //manipulatorController.whenPOVButtonPressed("N", new ChangeAngleCommand(-10.0));
-        //manipulatorController.whenPOVButtonPressed("S", new ChangeAngleCommand(10.0));
+        manipulatorController.whenButtonPressed("X", new StartShooterCommand(1.0));
+        manipulatorController.whenButtonReleased("X", new StartShooterCommand(0.0));
+        manipulatorController.whenButtonPressed("A", new StartRollerCommand(1.0));
+        manipulatorController.whenButtonReleased("A", new StartRollerCommand(0.0));
+        manipulatorController.whenButtonPressed("B", new ReverseRollerCommand(1.0));
+        manipulatorController.whenButtonReleased("B", new ReverseRollerCommand(0.0));
+        manipulatorController.whenButtonPressed("Y", new ReverseShooterCommand(1.0));
+        manipulatorController.whenButtonReleased("Y", new ReverseShooterCommand(1.0));
+        // manipulatorController.whenButtonPressed("LBUMP", new DecreaseShooterCommand());
+        // manipulatorController.whenButtonPressed("RBUMP", new IncreaseShooterCommand());
+        // manipulatorController.whenButtonPressed("START", new ActivateFlyWheelCommand());
+        // manipulatorController.whenButtonPressed("SELECT", new ActivateFlyWheelCommand());
+        // manipulatorController.whenPOVButtonPressed("N", new Retrack Rollers());
+        // manipulatorController.whenPOVButtonPressed("S", new Engage Rollers());
         
     }
 

@@ -1,21 +1,20 @@
 package frc.robot.commands;
 
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.SubsystemsInstance;
 
-public class RunAngleElevatorCommand extends CommandBase {
+public class ReverseRollerCommand extends CommandBase {
 
   private double speed;
   private SubsystemsInstance inst;
 
 
-  public RunAngleElevatorCommand(double speed) {
+  public ReverseRollerCommand(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     
     inst = SubsystemsInstance.getInstance();
-    addRequirements(inst.m_elevatorSubsystem);
+    addRequirements(inst.m_rollerSubsystem);
 
     this.speed = speed;
   }
@@ -26,19 +25,17 @@ public class RunAngleElevatorCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_elevatorSubsystem.startRightAngleElevator(speed);
-    inst.m_elevatorSubsystem.startLeftAngleElevator(speed);
+    inst.m_rollerSubsystem.runRollerRev(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    
+
     return false;
   }
 }

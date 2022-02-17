@@ -4,17 +4,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.SubsystemsInstance;
 
-public class ReverseAngleElevatorCommand extends CommandBase {
+public class StartRollerCommand extends CommandBase {
 
   private double speed;
   private SubsystemsInstance inst;
 
 
-  public ReverseAngleElevatorCommand(double speed) {
+  public StartRollerCommand(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     
     inst = SubsystemsInstance.getInstance();
-    addRequirements(inst.m_elevatorSubsystem);
+    addRequirements(inst.m_rollerSubsystem);
 
     this.speed = speed;
   }
@@ -25,8 +25,7 @@ public class ReverseAngleElevatorCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_elevatorSubsystem.retrackRightAngleElevator(speed);
-    inst.m_elevatorSubsystem.retrackLeftAngleElevator(speed);
+    inst.m_rollerSubsystem.runRollerFwd(speed);
   }
 
   // Called once the command ends or is interrupted.

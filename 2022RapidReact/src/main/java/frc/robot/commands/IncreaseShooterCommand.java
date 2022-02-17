@@ -24,7 +24,7 @@ public class IncreaseShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_shooterSubsystem.increaseFlywheelRPM(increaseRPM);
+    inst.m_shooterSubsystem.increaseKickerRPM(increaseRPM);
   }
 
   // Called once the command ends or is interrupted.

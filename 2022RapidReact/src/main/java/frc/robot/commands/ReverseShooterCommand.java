@@ -4,17 +4,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.SubsystemsInstance;
 
-public class RunVerticalElevatorCommand extends CommandBase {
+public class ReverseShooterCommand extends CommandBase {
 
   private double speed;
   private SubsystemsInstance inst;
 
 
-  public RunVerticalElevatorCommand(double speed) {
+  public ReverseShooterCommand(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     
     inst = SubsystemsInstance.getInstance();
-    addRequirements(inst.m_elevatorSubsystem);
+    addRequirements(inst.m_shooterSubsystem);
 
     this.speed = speed;
   }
@@ -25,8 +25,7 @@ public class RunVerticalElevatorCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_elevatorSubsystem.startRightVerticalElevator(speed);
-    inst.m_elevatorSubsystem.startLeftVerticalElevator(speed);
+    inst.m_shooterSubsystem.runKickerRev(speed);
   }
 
   // Called once the command ends or is interrupted.

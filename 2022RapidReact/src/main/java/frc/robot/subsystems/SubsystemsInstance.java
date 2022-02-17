@@ -28,7 +28,7 @@ public class SubsystemsInstance {
         m_rollerSubsystem = new RollerSubsystem();
 
         CommandScheduler.getInstance().registerSubsystem(m_driveSubsystem);
-        
+
         CommandScheduler.getInstance().registerSubsystem(m_shooterSubsystem);
         CommandScheduler.getInstance().registerSubsystem(m_rollerSubsystem);
         CommandScheduler.getInstance().registerSubsystem(m_elevatorSubsystem);
