@@ -57,8 +57,13 @@ public class ElevatorSubsystem extends SubsystemBase {
   }
 
   public void rewindAngleElevator(double speed) {
-    outRightElevator.set(ControlMode.PercentOutput, speed);
-    outLeftElevator.set(ControlMode.PercentOutput, speed);
+    if (ioInst.getDriverController().isTriggerPressed(XBoxController.LEFT_TRIGGER) && ioInst.getDriverController().isTriggerPressed(XBoxController.RIGHT_TRIGGER)) {
+      outRightElevator.set(ControlMode.PercentOutput, speed);
+      outLeftElevator.set(ControlMode.PercentOutput, speed);
+    } else {
+      outRightElevator.set(ControlMode.PercentOutput, 0.0);
+      outLeftElevator.set(ControlMode.PercentOutput, 0.0);
+    }
   }
 
   public void startRightAngleElevator(double speed) {
@@ -176,12 +181,12 @@ public class ElevatorSubsystem extends SubsystemBase {
           -ioInst.getManipulatorController().getLeftStickY());
     }
 
-    if (ioInst.getDriverController().isTriggerPressed(XBoxController.LEFT_TRIGGER)
-        && ioInst.getDriverController().isTriggerPressed(XBoxController.RIGHT_TRIGGER)) {
-      rewindAngleElevator(0.3);
-    } else {
-      rewindAngleElevator(0.0);
-    }
+    // if (ioInst.getDriverController().isTriggerPressed(XBoxController.LEFT_TRIGGER)
+    //     && ioInst.getDriverController().isTriggerPressed(XBoxController.RIGHT_TRIGGER)) {
+    //   rewindAngleElevator(0.3);
+    // } else {
+    //   rewindAngleElevator(0.0);
+    // }
 
     // SmartDashboard.putBoolean("F ANGLE RIGHT",
     // outRightCollection.isFwdLimitSwitchClosed());

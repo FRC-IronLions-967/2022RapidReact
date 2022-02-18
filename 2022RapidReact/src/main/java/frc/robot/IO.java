@@ -36,6 +36,8 @@ public class IO {
         manipulatorController.whenButtonPressed("SELECT", new DeactivateFlyWheelCommand());
         manipulatorController.whenPOVButtonPressed("N", new RetrackRollerCommand());
         manipulatorController.whenPOVButtonPressed("S", new EngageRollerCommand());
+        driverController.whenButtonPressed("X", new RewindElevatorCommand(0.3));
+        driverController.whenButtonReleased("X", new RewindElevatorCommand(0.0));
         }
 
     public XBoxController getDriverController() {
