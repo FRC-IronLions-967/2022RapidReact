@@ -5,7 +5,6 @@ import frc.robot.commands.*;
 
 public class IO {
     private static IO instance;
-
     private XBoxController driverController;
     private XBoxController manipulatorController;
 
@@ -37,8 +36,7 @@ public class IO {
         manipulatorController.whenButtonPressed("SELECT", new DeactivateFlyWheelCommand());
         manipulatorController.whenPOVButtonPressed("N", new RetrackRollerCommand());
         manipulatorController.whenPOVButtonPressed("S", new EngageRollerCommand());
-        
-    }
+        }
 
     public XBoxController getDriverController() {
         return driverController;
