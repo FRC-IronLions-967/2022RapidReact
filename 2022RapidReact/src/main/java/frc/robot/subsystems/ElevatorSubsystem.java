@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ElevatorSubsystem extends SubsystemBase {
 
-  public TalonSRX outRightElevator;
+  private TalonSRX outRightElevator;
   private TalonSRX outLeftElevator;
   private TalonSRX inRightElevator;
   private TalonSRX inLeftElevator;
@@ -89,7 +89,7 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public void startRightVerticalElevator(double speed) {
 
-    if (inRightCollection.isRevLimitSwitchClosed()) {
+    if (inRightCollection.isFwdLimitSwitchClosed()) {
       inRightElevator.setNeutralMode(NeutralMode.Brake);
       inRightElevator.set(ControlMode.PercentOutput, 0.0);
     } else {
@@ -137,7 +137,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   }
 
   public void retrackRightVerticalElevator(double speed) {
-    if (inRightCollection.isFwdLimitSwitchClosed()) {
+    if (inRightCollection.isRevLimitSwitchClosed()) {
       inRightElevator.setNeutralMode(NeutralMode.Brake);
       inRightElevator.set(ControlMode.PercentOutput, 0.0);
     } else {
@@ -179,21 +179,10 @@ public class ElevatorSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
 
-    if (ioInst.getManipulatorController().isTriggerPressed(XBoxController.LEFT_TRIGGER)
-        && ioInst.getManipulatorController().isTriggerPressed(XBoxController.RIGHT_TRIGGER)) {
-      elevatorWorking(-ioInst.getManipulatorController().getRightStickY(),
-          -ioInst.getManipulatorController().getLeftStickY());
+    if (ioInst.getManipulatorController().isTriggerPressed(XBoxController.LEFT_TRIGGER) && ioInst.getManipulatorController().isTriggerPressed(XBoxController.RIGHT_TRIGGER)) {
+      elevatorWorking(-ioInst.getManipulatorController().getRightStickY(), -ioInst.getManipulatorController().getLeftStickY());
     }
 
-    // if
-    // (ioInst.getDriverController().isTriggerPressed(XBoxController.LEFT_TRIGGER)
-    // &&
-    // ioInst.getDriverController().isTriggerPressed(XBoxController.RIGHT_TRIGGER))
-    // {
-    // rewindAngleElevator(0.3);
-    // } else {
-    // rewindAngleElevator(0.0);
-    // }
 
     SmartDashboard.putBoolean("F ANGLE RIGHT", outRightCollection.isFwdLimitSwitchClosed());
     SmartDashboard.putBoolean("R ANGLE RIGHT", outRightCollection.isRevLimitSwitchClosed());
