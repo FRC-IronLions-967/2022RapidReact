@@ -29,18 +29,22 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     outRightElevator = new TalonSRX(6);
     outRightElevator.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.Disabled);
+    outRightElevator.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.Disabled);
     outRightCollection = new SensorCollection(outRightElevator);
 
     outLeftElevator = new TalonSRX(7);
     outLeftElevator.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.Disabled);
+    outLeftElevator.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.Disabled);
     outLeftCollection = new SensorCollection(outLeftElevator);
 
     inRightElevator = new TalonSRX(8);
     inRightElevator.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.Disabled);
+    inRightElevator.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.Disabled);
     inRightCollection = new SensorCollection(inRightElevator);
 
     inLeftElevator = new TalonSRX(9);
     inLeftElevator.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.Disabled);
+    inLeftElevator.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.Disabled);
     inLeftCollection = new SensorCollection(inLeftElevator);
 
     outRightElevator.setInverted(false);
@@ -153,7 +157,7 @@ public class ElevatorSubsystem extends SubsystemBase {
       startRightVerticalElevator(0.5);
       // startLeftVerticalElevator(0.5);
 
-    } else if (x < -0.1) {
+    } else if (x <-(deadband)) {
       // System.out.println("VERTICAL IN");
       retrackRightVerticalElevator(-0.5);
       // retrackLeftVerticalElevator(-0.5);
