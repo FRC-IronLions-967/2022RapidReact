@@ -15,7 +15,6 @@ public class ReplayAutoRecorder {
     private String[] fieldNames;
 
     public ReplayAutoRecorder(String[] fieldNames) {
-        startTime = System.currentTimeMillis();
         this.fieldNames = fieldNames;
         fields = new HashMap<>();
         Calendar calendar = Calendar.getInstance();
@@ -37,11 +36,16 @@ public class ReplayAutoRecorder {
 
         }
     }
+
+    public void startTime() {
+        startTime = System.currentTimeMillis();
+    }
+
     public void updateField(String name, Object value){
         fields.put(name, value);
     }
 
-    public void recordLine(){
+    public void recordLine() {
         String line = Long.toString(System.currentTimeMillis() - startTime);
         for(String s : fieldNames){
             line = line.concat("," + fields.get(s).toString());

@@ -38,9 +38,6 @@ public class RollerSubsystem extends SubsystemBase {
         armSpeed = speed;
     }
 
-
-
-
     @Override
     public void periodic() {
         recordInst.recorder.updateField("rollerpower", Double.valueOf(rollerSpeed));
