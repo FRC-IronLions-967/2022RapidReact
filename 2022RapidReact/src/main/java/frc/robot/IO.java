@@ -30,8 +30,8 @@ public class IO {
         manipulatorController.whenButtonReleased("B", new StartRollerCommand(0.0));
         manipulatorController.whenButtonPressed("Y", new RunShooterCommand(-1.0));
         manipulatorController.whenButtonReleased("Y", new RunShooterCommand(0.0));
-        // manipulatorController.whenButtonPressed("LBUMP", new DecreaseShooterCommand());
-        // manipulatorController.whenButtonPressed("RBUMP", new IncreaseShooterCommand());
+        // manipulatorController.whenButtonPressed("LBUMP", new ChangeRPMCommand(-0.05));
+        // manipulatorController.whenButtonPressed("RBUMP", new ChangeRPMCommand(0.05));
         manipulatorController.whenButtonPressed("START", new RunFlyWheelCommand(true));
         manipulatorController.whenButtonPressed("SELECT", new RunFlyWheelCommand(false));
         manipulatorController.whenPOVButtonPressed("N", new RunArmWinchCommand(0.2));

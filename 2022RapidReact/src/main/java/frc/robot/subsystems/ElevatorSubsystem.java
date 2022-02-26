@@ -132,12 +132,12 @@ public class ElevatorSubsystem extends SubsystemBase {
       inLeftElevator.set(ControlMode.PercentOutput, 0.0);
     }
 
-    SmartDashboard.putString("OUT RIGHT STATE", outRightStateMachine.toString());
-    SmartDashboard.putString("OUT LEFT STATE", outLeftStateMachine.toString());
+    // SmartDashboard.putString("OUT RIGHT STATE", outRightStateMachine.toString());
+    // SmartDashboard.putString("OUT LEFT STATE", outLeftStateMachine.toString());
     
     
-    SmartDashboard.putString("IN RIGHT STATE", inRightStateMachine.toString());
-    SmartDashboard.putString("IN LEFT STATE", inLeftStateMachine.toString());
+    // SmartDashboard.putString("IN RIGHT STATE", inRightStateMachine.toString());
+    // SmartDashboard.putString("IN LEFT STATE", inLeftStateMachine.toString());
 
     SmartDashboard.putBoolean("F ANGLE RIGHT", outRightCollection.isFwdLimitSwitchClosed());
     SmartDashboard.putBoolean("R ANGLE RIGHT", outRightCollection.isRevLimitSwitchClosed());

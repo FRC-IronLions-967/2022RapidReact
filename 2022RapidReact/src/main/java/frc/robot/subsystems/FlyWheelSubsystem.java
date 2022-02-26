@@ -11,6 +11,7 @@ public class FlyWheelSubsystem extends SubsystemBase {
 
     private CANSparkMax flyWheel;
     private boolean flyWheelON;
+    private double flyWheelRPM = 0.3;
 
 
     public FlyWheelSubsystem() {
@@ -19,7 +20,9 @@ public class FlyWheelSubsystem extends SubsystemBase {
         flyWheel.setInverted(true);
     }
 
-
+    public void changeTheRPM(double changeRPM){
+        flyWheelRPM += changeRPM;
+    }
 
     public void runFlyWheel(boolean flyWheelON){
         this.flyWheelON = flyWheelON;
@@ -28,7 +31,7 @@ public class FlyWheelSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         if (flyWheelON){
-            flyWheel.set(0.85);
+            flyWheel.set(flyWheelRPM);
         } else {
             flyWheel.set(0.0);
         }
