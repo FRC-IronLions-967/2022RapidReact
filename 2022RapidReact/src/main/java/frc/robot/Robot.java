@@ -12,6 +12,7 @@ import frc.robot.autonomous.ReplayAuto;
 
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
+import frc.robot.utils.replayauto.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,7 +27,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private SubsystemsInstance subsystemsInst;
   private ReplayAuto replayAuto;
-
+  private RecorderInstance recordInst;
 
 
   /**
@@ -45,6 +46,7 @@ public class Robot extends TimedRobot {
 
 
     subsystemsInst = SubsystemsInstance.getInstance();
+    recordInst = RecorderInstance.getInstance();
 
     replayAuto = new ReplayAuto("/home/lvuser/recordings/recording_1_15_14:54:11.csv");
   }
@@ -59,6 +61,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+    recordInst.recorder.recordLine();
   }
 
   /**

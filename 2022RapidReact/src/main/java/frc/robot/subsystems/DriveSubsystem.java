@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Utils;
+import frc.robot.utils.replayauto.*;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -29,6 +30,8 @@ public class DriveSubsystem extends SubsystemBase {
   private File recordFile;
   private PrintWriter writer;
   private long startTime;
+
+  private RecorderInstance recordInst;
 
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
@@ -46,21 +49,21 @@ public class DriveSubsystem extends SubsystemBase {
     leftMaster.setInverted(false);
     leftSlave.setInverted(false);
 
-    startTime = System.currentTimeMillis();
+    // startTime = System.currentTimeMillis();
 
-    Calendar calendar = Calendar.getInstance();
-    String path = String.format("/home/lvuser/recordings/recording_%d_%d_%d:%d:%d.csv", calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
-    recordFile = new File(path);
-    try {
-    writer = new PrintWriter(new FileWriter(recordFile), true);
-    writer.println("Timestamp,rightpower,leftpower");
-    } catch (IOException e) {
-      DriverStation.reportError(e.getMessage(), e.getStackTrace());
-
-
-    }
+    // Calendar calendar = Calendar.getInstance();
+    // String path = String.format("/home/lvuser/recordings/recording_%d_%d_%d:%d:%d.csv", calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+    // recordFile = new File(path);
+    // try {
+    // writer = new PrintWriter(new FileWriter(recordFile), true);
+    // writer.println("Timestamp,rightpower,leftpower");
+    // } catch (IOException e) {
+    //   DriverStation.reportError(e.getMessage(), e.getStackTrace());
 
 
+    // }
+
+    recordInst = RecorderInstance.getInstance();
 
   }
 
@@ -83,7 +86,9 @@ public class DriveSubsystem extends SubsystemBase {
     rightMaster.set(r);
     leftMaster.set(l);
 
-    writer.println(String.format("%d,%f,%f", System.currentTimeMillis() - startTime, r, l));
+    // writer.println(String.format("%d,%f,%f", System.currentTimeMillis() - startTime, r, l));
+    recordInst.recorder.updateField("rightpower", r);
+    recordInst.recorder.updateField("leftpower", l);
 
 
   }
