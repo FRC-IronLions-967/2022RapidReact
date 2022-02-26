@@ -1,5 +1,7 @@
 package frc.robot.utils.statemachine;
 
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class ElevatorStateMachine extends MotorStateMachine {
     
     // stores the current state of the state machine
@@ -7,10 +9,10 @@ public class ElevatorStateMachine extends MotorStateMachine {
     private boolean posUp;
     private boolean posDown;
 
-    private static final BTN_UP = 0;
-    private static final BTN_DOWN = 1;
-    private static final SW_UP = 2;
-    private static final SW_DOWN = 3;
+    private static final int BTN_UP = 0;
+    private static final int BTN_DOWN = 1;
+    private static final int SW_UP = 2;
+    private static final int SW_DOWN = 3;
 
     /**
      * Constructor.
@@ -39,6 +41,7 @@ public class ElevatorStateMachine extends MotorStateMachine {
                 posUp = inputs[SW_UP];
                 posDown = inputs[SW_DOWN];
                 state = ElevatorState.IDLE;
+                // SmartDashboard.putString("state", "RESET");
                 break;
             
             case IDLE:
@@ -48,15 +51,18 @@ public class ElevatorStateMachine extends MotorStateMachine {
                 } else if(inputs[BTN_DOWN] && !inputs[BTN_UP] && !posDown){
                     state = ElevatorState.MOVING_DOWN;
                 }
+                // SmartDashboard.putString("state", "IDLE");
                 break;
             
             case MOVING_UP:
                 motorPower = maxMotorPower;
+                posDown = false;
                 if (!inputs[BTN_UP]){
                     state = ElevatorState.IDLE;
                 }else if (inputs[BTN_UP] && inputs[SW_UP]){
                     state = ElevatorState.UP;
                 }
+                // SmartDashboard.putString("state", "Moving UP");
                 break;
 
             case UP:
@@ -65,20 +71,27 @@ public class ElevatorStateMachine extends MotorStateMachine {
                 if (!inputs[BTN_UP]){
                     state = ElevatorState.IDLE;
                 }
+                // SmartDashboard.putString("state", "UP");
                 break;
 
             case MOVING_DOWN:
                 motorPower = -maxMotorPower;
+                posUp = false;
                 if (!inputs[BTN_DOWN]){
                     state = ElevatorState.IDLE;
                 }else if (inputs[BTN_DOWN] && inputs[SW_DOWN]){
                     state = ElevatorState.DOWN;
                 }
+                // SmartDashboard.putString("state", "Moving Down");
                 break;
 
             case DOWN:
                 motorPower = 0.0;
                 posDown = true;
+                if(!inputs[BTN_DOWN]){
+                    state = ElevatorState.IDLE;
+                }
+                // SmartDashboard.putString("state", "Down");
                 break;
         }
     }
@@ -95,4 +108,36 @@ public class ElevatorStateMachine extends MotorStateMachine {
         return 4;
     }
 
+    @Override
+    public String toString(){
+        String str = "";
+        switch (state){
+            case RESET:
+                str = str.concat("Reset");
+                break;
+            case IDLE:
+                str = str.concat("IDLE");
+                break;
+            case MOVING_UP:
+                str = str.concat("MOVING UP");
+                break;
+            case UP:
+                str = str.concat("UP");
+                break;
+            case MOVING_DOWN:
+                str = str.concat("MOVING DOWN");
+                break;
+            case DOWN:
+                str = str.concat("DOWN");
+                break;
+            default:
+                str = str.concat("Unknown");
+                break;
+        }
+
+        // str = str.concat(" posUp: " + posUp + " posDown: " + posDown);
+        str = str.concat(" motorPower: " + motorPower);
+
+        return str;
+    }
 }

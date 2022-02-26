@@ -1,18 +1,19 @@
 package frc.robot.subsystems;
 
+// import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+// import com.revrobotics.CANSparkMax;
+// import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class RollerSubsystem extends SubsystemBase {
 
-    private CANSparkMax roller;
+    private VictorSPX roller;
     private VictorSPX armWinch;
 
     public RollerSubsystem() {
-        roller = new CANSparkMax(10, MotorType.kBrushless);
+        roller = new VictorSPX(10);
         armWinch = new VictorSPX(12);
 
         roller.setInverted(false);
@@ -20,11 +21,12 @@ public class RollerSubsystem extends SubsystemBase {
     }
 
     public void runRollerFwd(double speed) {
-        roller.set(speed);
+        roller.set(VictorSPXControlMode.PercentOutput, speed);
     }
 
     public void runRollerRev(double speed) {
-        roller.set(speed);
+        roller.set(VictorSPXControlMode.PercentOutput, speed);
+
     }
 
     public void engageArmWinch(){
