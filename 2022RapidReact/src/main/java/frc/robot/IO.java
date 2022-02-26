@@ -24,9 +24,9 @@ public class IO {
   
         manipulatorController.whenButtonPressed("X", new RunShooterCommand(1.0));
         manipulatorController.whenButtonReleased("X", new RunShooterCommand(0.0));
-        manipulatorController.whenButtonPressed("A", new StartRollerCommand(1.0));
+        manipulatorController.whenButtonPressed("A", new StartRollerCommand(-1.0));
         manipulatorController.whenButtonReleased("A", new StartRollerCommand(0.0));
-        manipulatorController.whenButtonPressed("B", new StartRollerCommand(-1.0));
+        manipulatorController.whenButtonPressed("B", new StartRollerCommand(1.0));
         manipulatorController.whenButtonReleased("B", new StartRollerCommand(0.0));
         manipulatorController.whenButtonPressed("Y", new RunShooterCommand(-1.0));
         manipulatorController.whenButtonReleased("Y", new RunShooterCommand(0.0));
@@ -34,9 +34,9 @@ public class IO {
         // manipulatorController.whenButtonPressed("RBUMP", new IncreaseShooterCommand());
         manipulatorController.whenButtonPressed("START", new RunFlyWheelCommand(true));
         manipulatorController.whenButtonPressed("SELECT", new RunFlyWheelCommand(false));
-        manipulatorController.whenPOVButtonPressed("N", new RunArmWinchCommand(0.5));
+        manipulatorController.whenPOVButtonPressed("N", new RunArmWinchCommand(0.2));
         manipulatorController.whenPOVButtonReleased("N", new RunArmWinchCommand(0.0));
-        manipulatorController.whenPOVButtonPressed("S", new RunArmWinchCommand(-0.5));
+        manipulatorController.whenPOVButtonPressed("S", new RunArmWinchCommand(-0.2));
         manipulatorController.whenPOVButtonReleased("S", new RunArmWinchCommand(0.0));
         driverController.whenButtonPressed("B", new RewindElevatorCommand(-0.3, true));
         driverController.whenButtonReleased("B", new RewindElevatorCommand(0.0, false));
