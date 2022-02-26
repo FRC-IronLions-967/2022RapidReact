@@ -15,6 +15,9 @@ public class RollerSubsystem extends SubsystemBase {
     private VictorSPX armWinch;
     private RecorderInstance recordInst;
 
+    private double rollerSpeed = 0.0;
+    private double armSpeed = 0.0;
+
     public RollerSubsystem() {
         roller = new VictorSPX(10);
         armWinch = new VictorSPX(12);
@@ -27,12 +30,12 @@ public class RollerSubsystem extends SubsystemBase {
 
     public void runRoller(double speed) {
         roller.set(VictorSPXControlMode.PercentOutput, speed);
-        recordInst.recorder.updateField("rollerpower", speed);
+        rollerSpeed = speed;
     }
 
     public void runArmWinch(double speed){
         armWinch.set(VictorSPXControlMode.PercentOutput, speed);
-        recordInst.recorder.updateField("armpower", speed);
+        armSpeed = speed;
     }
 
 
@@ -40,7 +43,8 @@ public class RollerSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-
+        recordInst.recorder.updateField("rollerpower", Double.valueOf(rollerSpeed));
+        recordInst.recorder.updateField("armpower", Double.valueOf(armSpeed));
     }
 
 }

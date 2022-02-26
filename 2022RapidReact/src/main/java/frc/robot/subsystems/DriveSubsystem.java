@@ -4,16 +4,12 @@
 
 package frc.robot.subsystems;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Calendar;
+
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DriverStation;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Utils;
@@ -27,9 +23,8 @@ public class DriveSubsystem extends SubsystemBase {
   private CANSparkMax leftSlave;
 
   private double v = 0.0;
-  private File recordFile;
-  private PrintWriter writer;
-  private long startTime;
+  private double r = 0.0;
+  private double l = 0.0;
 
   private RecorderInstance recordInst;
 
@@ -86,9 +81,10 @@ public class DriveSubsystem extends SubsystemBase {
     rightMaster.set(r);
     leftMaster.set(l);
 
+    this.r = r;
+    this.l = l;
+
     // writer.println(String.format("%d,%f,%f", System.currentTimeMillis() - startTime, r, l));
-    recordInst.recorder.updateField("rightpower", r);
-    recordInst.recorder.updateField("leftpower", l);
 
 
   }
@@ -123,6 +119,8 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    recordInst.recorder.updateField("rightpower", Double.valueOf(r));
+    recordInst.recorder.updateField("leftpower", Double.valueOf(l));
   }
 
 }

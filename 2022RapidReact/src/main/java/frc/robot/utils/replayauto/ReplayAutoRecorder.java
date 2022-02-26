@@ -38,9 +38,7 @@ public class ReplayAutoRecorder {
         }
     }
     public void updateField(String name, Object value){
-        if(fields.containsKey(name)){
-            fields.put(name, value);
-        }
+        fields.put(name, value);
     }
 
     public void recordLine(){

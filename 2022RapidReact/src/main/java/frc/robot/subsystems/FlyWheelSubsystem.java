@@ -12,7 +12,7 @@ public class FlyWheelSubsystem extends SubsystemBase {
 
     private CANSparkMax flyWheel;
     private boolean flyWheelON;
-    private double flyWheelRPM = 0.3;
+    private double flyWheelRPM = 0.85;
 
     private RecorderInstance recordInst;
 

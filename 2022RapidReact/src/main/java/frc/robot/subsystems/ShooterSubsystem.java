@@ -14,6 +14,8 @@ public class ShooterSubsystem extends SubsystemBase {
     private VictorSPX kicker;
     private RecorderInstance recordInst;
 
+    private double shooterSpeed = 0.0;
+
     public ShooterSubsystem() {
         kicker = new VictorSPX(11);
         kicker.setInverted(false);
@@ -24,11 +26,11 @@ public class ShooterSubsystem extends SubsystemBase {
     
     public void runKicker(double speed) {
         kicker.set(VictorSPXControlMode.PercentOutput, speed);
-        recordInst.recorder.updateField("kickerpower", speed);
+        shooterSpeed = speed;
     }
 
     @Override
     public void periodic() {
-        
+        recordInst.recorder.updateField("kickerpower", Double.valueOf(shooterSpeed));
     }
 }

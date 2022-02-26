@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.autonomous.ReplayAuto;
+import frc.robot.autonomous.*;
 
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
@@ -26,7 +26,8 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private SubsystemsInstance subsystemsInst;
-  private ReplayAuto replayAuto;
+  // private ReplayAuto replayAuto;
+  private ShootReplayAuto auto;
   private RecorderInstance recordInst;
 
 
@@ -48,7 +49,7 @@ public class Robot extends TimedRobot {
     subsystemsInst = SubsystemsInstance.getInstance();
     recordInst = RecorderInstance.getInstance();
 
-    replayAuto = new ReplayAuto("/home/lvuser/recordings/recording_1_15_14:54:11.csv");
+    auto = new ShootReplayAuto("/home/lvuser/recordings/testauto.csv");
   }
 
   /**
@@ -61,7 +62,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-    recordInst.recorder.recordLine();
+    // recordInst.recorder.recordLine();
+    //remove this line if you arent recording
   }
 
   /**
@@ -79,13 +81,13 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
-    replayAuto.init();
+    auto.init();
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    replayAuto.periodic();
+    auto.periodic();
 
   }
 
