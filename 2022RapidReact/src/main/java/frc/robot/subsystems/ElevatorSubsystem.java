@@ -4,7 +4,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.IO;
@@ -71,12 +70,10 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public void rewindAngleElevator(double speed, boolean on) {
     if (on) {
-      // if (ioInst.getDriverController().isTriggerPressed(XBoxController.LEFT_TRIGGER)
-      //     && ioInst.getDriverController().isTriggerPressed(XBoxController.RIGHT_TRIGGER)) {
-      //   // outRightElevator.set(ControlMode.PercentOutput, speed);
-      //   // outLeftElevator.set(ControlMode.PercentOutput, speed);
-      //    elevatorWorking(-ioInst.getManipulatorController().getRightStickY(), -ioInst.getManipulatorController().getLeftStickY());
-      //   // System.out.println("It works and activated");
+      // if (ioInst.getDriverController().isTriggerPressed(XBoxController.LEFT_TRIGGER) && ioInst.getDriverController().isTriggerPressed(XBoxController.RIGHT_TRIGGER)) {
+      //   outRightElevator.set(ControlMode.PercentOutput, speed);
+      //   outLeftElevator.set(ControlMode.PercentOutput, speed);
+      //   System.out.println("It works and activated");
       // } else {
       //   outRightElevator.set(ControlMode.PercentOutput, 0.0);
       //   outLeftElevator.set(ControlMode.PercentOutput, 0.0);
@@ -85,114 +82,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     }
   }
 
-  public void startRightAngleElevator(double speed) {
 
-    if (outRightCollection.isFwdLimitSwitchClosed()) {
-      outRightElevator.setNeutralMode(NeutralMode.Brake);
-      outRightElevator.set(ControlMode.PercentOutput, 0.0);
-    } else {
-      outRightElevator.set(ControlMode.PercentOutput, speed);
-    }
-  }
-
-  public void startLeftAngleElevator(double speed) {
-
-    if (outLeftCollection.isFwdLimitSwitchClosed()) {
-      outLeftElevator.setNeutralMode(NeutralMode.Brake);
-      outLeftElevator.set(ControlMode.PercentOutput, 0.0);
-    } else {
-      outLeftElevator.set(ControlMode.PercentOutput, speed);
-    }
-  }
-
-  public void startRightVerticalElevator(double speed) {
-
-    if (inRightCollection.isFwdLimitSwitchClosed()) {
-      inRightElevator.setNeutralMode(NeutralMode.Brake);
-      inRightElevator.set(ControlMode.PercentOutput, 0.0);
-    } else {
-      inRightElevator.set(ControlMode.PercentOutput, speed);
-    }
-  }
-
-  public void startLeftVerticalElevator(double speed) {
-
-    if (inLeftCollection.isFwdLimitSwitchClosed()) {
-      inLeftElevator.setNeutralMode(NeutralMode.Brake);
-      inLeftElevator.set(ControlMode.PercentOutput, 0.0);
-    } else {
-      inLeftElevator.set(ControlMode.PercentOutput, speed);
-    }
-  }
-
-  public void retrackRightAngleElevator(double speed) {
-
-    if (outRightCollection.isRevLimitSwitchClosed()) {
-      outRightElevator.setNeutralMode(NeutralMode.Brake);
-      outRightElevator.set(ControlMode.PercentOutput, 0.0);
-    } else {
-      outRightElevator.set(ControlMode.PercentOutput, speed);
-    }
-  }
-
-  public void retrackLeftAngleElevator(double speed) {
-
-    if (outLeftCollection.isRevLimitSwitchClosed()) {
-      outLeftElevator.setNeutralMode(NeutralMode.Brake);
-      outLeftElevator.set(ControlMode.PercentOutput, 0.0);
-    } else {
-      outLeftElevator.set(ControlMode.PercentOutput, speed);
-    }
-  }
-
-  public void retrackLeftVerticalElevator(double speed) {
-    if (inLeftCollection.isRevLimitSwitchClosed()) {
-      inLeftElevator.setNeutralMode(NeutralMode.Brake);
-      inLeftElevator.set(ControlMode.PercentOutput, 0.0);
-    } else {
-      inLeftElevator.set(ControlMode.PercentOutput, speed);
-    }
-  }
-
-  public void retrackRightVerticalElevator(double speed) {
-    if (inRightCollection.isRevLimitSwitchClosed()) {
-      inRightElevator.setNeutralMode(NeutralMode.Brake);
-      inRightElevator.set(ControlMode.PercentOutput, 0.0);
-    } else {
-      inRightElevator.set(ControlMode.PercentOutput, speed);
-    }
-  }
-
-  public void elevatorWorking(double x, double y) {
-    // System.out.println("ACIVATEDDDDD!!!!");
-
-    if (x > deadband) {
-      // System.out.println("VERTICCAL OUT");
-      startRightVerticalElevator(0.5);
-      startLeftVerticalElevator(0.5);
-
-    } else if (x <-(deadband)) {
-      // System.out.println("VERTICAL IN");
-      retrackRightVerticalElevator(-0.5);
-      retrackLeftVerticalElevator(-0.5);
-
-    } else {
-      startRightVerticalElevator(0.0);
-      retrackRightVerticalElevator(0.0);
-    }
-
-    if (y > deadband) {
-      System.out.println("ANGLE OUT");
-      startRightAngleElevator(0.5);
-      startLeftAngleElevator(0.5);
-
-    } else if (y < -(deadband)) {
-      System.out.println("ANGLE IN");
-      retrackRightAngleElevator(0.3);
-      retrackLeftAngleElevator(0.3);
-    }
-
-  }
 
   @Override
   public void periodic() {

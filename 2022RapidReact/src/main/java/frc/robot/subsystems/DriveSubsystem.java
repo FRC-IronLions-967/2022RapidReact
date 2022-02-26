@@ -33,10 +33,10 @@ public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
 
-    rightMaster = new CANSparkMax(1, MotorType.kBrushless);
-    rightSlave = new CANSparkMax(2, MotorType.kBrushless);
-    leftMaster = new CANSparkMax(3, MotorType.kBrushless);
-    leftSlave = new CANSparkMax(4, MotorType.kBrushless);
+    rightMaster = new CANSparkMax(4, MotorType.kBrushless);
+    rightSlave = new CANSparkMax(3, MotorType.kBrushless);
+    leftMaster = new CANSparkMax(2, MotorType.kBrushless);
+    leftSlave = new CANSparkMax(1, MotorType.kBrushless);
 
     // set slaves to follow master motor controllers
     rightSlave.follow(rightMaster);
@@ -49,18 +49,17 @@ public class DriveSubsystem extends SubsystemBase {
     startTime = System.currentTimeMillis();
 
     Calendar calendar = Calendar.getInstance();
-    String path = String.format("/home/lvuser/recordings/recording_%d_%d_%d:%d:%d.csv", calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+    String path = String.format("/home/lvuser/recordings/recording_%d_%d_%d:%d:%d.csv",
+        calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY),
+        calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
     recordFile = new File(path);
     try {
-    writer = new PrintWriter(new FileWriter(recordFile), true);
-    writer.println("Timestamp,rightpower,leftpower");
+      writer = new PrintWriter(new FileWriter(recordFile), true);
+      writer.println("Timestamp,rightpower,leftpower");
     } catch (IOException e) {
       DriverStation.reportError(e.getMessage(), e.getStackTrace());
 
-
     }
-
-
 
   }
 
@@ -84,7 +83,6 @@ public class DriveSubsystem extends SubsystemBase {
     leftMaster.set(l);
 
     writer.println(String.format("%d,%f,%f", System.currentTimeMillis() - startTime, r, l));
-
 
   }
 

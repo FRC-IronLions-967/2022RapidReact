@@ -20,22 +20,15 @@ public class RollerSubsystem extends SubsystemBase {
         armWinch.setInverted(false);
     }
 
-    public void runRollerFwd(double speed) {
+    public void runRoller(double speed) {
         roller.set(VictorSPXControlMode.PercentOutput, speed);
     }
 
-    public void runRollerRev(double speed) {
-        roller.set(VictorSPXControlMode.PercentOutput, speed);
-
+    public void runArmWinch(double speed){
+        armWinch.set(VictorSPXControlMode.PercentOutput, speed);
     }
 
-    public void engageArmWinch(){
-        armWinch.set(VictorSPXControlMode.PercentOutput, 1.0);
-    }
 
-    public void retrackArmWinch(){
-        armWinch.set(VictorSPXControlMode.PercentOutput, -1.0);
-    }
 
 
     @Override

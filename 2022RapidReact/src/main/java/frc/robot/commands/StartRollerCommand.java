@@ -25,7 +25,7 @@ public class StartRollerCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_rollerSubsystem.runRollerFwd(speed);
+    inst.m_rollerSubsystem.runRoller(speed);
   }
 
   // Called once the command ends or is interrupted.

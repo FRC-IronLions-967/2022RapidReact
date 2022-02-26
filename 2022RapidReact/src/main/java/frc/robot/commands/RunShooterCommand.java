@@ -4,19 +4,19 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.SubsystemsInstance;
 
-public class DeactivateFlyWheelCommand extends CommandBase {
+public class RunShooterCommand extends CommandBase {
 
-
+  private double speed;
   private SubsystemsInstance inst;
 
 
-  public DeactivateFlyWheelCommand() {
+  public RunShooterCommand(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     
     inst = SubsystemsInstance.getInstance();
-    addRequirements(inst.m_flyWheelSubsystem);
+    addRequirements(inst.m_shooterSubsystem);
 
-    
+    this.speed = speed;
   }
   // Called when the command is initially scheduled.
   @Override
@@ -25,7 +25,7 @@ public class DeactivateFlyWheelCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_flyWheelSubsystem.deactivateFlyWheel();
+    inst.m_shooterSubsystem.runKicker(speed);
   }
 
   // Called once the command ends or is interrupted.
@@ -36,6 +36,6 @@ public class DeactivateFlyWheelCommand extends CommandBase {
   @Override
   public boolean isFinished() {
 
-    return false;
+    return true;
   }
 }

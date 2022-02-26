@@ -2,41 +2,38 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
 public class FlyWheelSubsystem extends SubsystemBase {
 
     private CANSparkMax flyWheel;
-    private boolean flyWheelON = false;
+    private boolean flyWheelON;
 
 
     public FlyWheelSubsystem() {
         flyWheel = new CANSparkMax(5, MotorType.kBrushless);
 
-        flyWheel.setInverted(false);
+        flyWheel.setInverted(true);
     }
 
-    public void activateFlyWheel(){
-        flyWheelON = true;
-        runFlyWheel();
-    }
 
-    public void deactivateFlyWheel(){
-        flyWheelON = false;
-        runFlyWheel();
-    }
 
-    public void runFlyWheel(){
-        if (flyWheelON){
-            flyWheel.set(1.0);
-        } else {
-            flyWheel.set(0.0);
-        }
+    public void runFlyWheel(boolean flyWheelON){
+        this.flyWheelON = flyWheelON;
     }
 
     @Override
     public void periodic() {
+        if (flyWheelON){
+            flyWheel.set(0.8);
+        } else {
+            flyWheel.set(0.0);
+        }
+        SmartDashboard.putNumber("Right Current", flyWheel.getOutputCurrent());
+        SmartDashboard.putNumber("Right RPM", flyWheel.getEncoder().getVelocity());
     }
 
 }

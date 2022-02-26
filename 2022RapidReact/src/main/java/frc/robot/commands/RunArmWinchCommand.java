@@ -4,19 +4,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.SubsystemsInstance;
 
-public class ActivateFlyWheelCommand extends CommandBase {
-
+public class RunArmWinchCommand extends CommandBase {
 
   private SubsystemsInstance inst;
+  private double speed;
 
-
-  public ActivateFlyWheelCommand() {
+  public RunArmWinchCommand(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     
     inst = SubsystemsInstance.getInstance();
-    addRequirements(inst.m_flyWheelSubsystem);
-
-    
+    addRequirements(inst.m_rollerSubsystem);
+  this.speed = speed;
   }
   // Called when the command is initially scheduled.
   @Override
@@ -25,7 +23,7 @@ public class ActivateFlyWheelCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_flyWheelSubsystem.activateFlyWheel();
+    inst.m_rollerSubsystem.runArmWinch(speed);
   }
 
   // Called once the command ends or is interrupted.

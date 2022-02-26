@@ -4,17 +4,19 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.SubsystemsInstance;
 
-public class RetrackRollerCommand extends CommandBase {
+public class RunFlyWheelCommand extends CommandBase {
 
+  private boolean flyOn;
   private SubsystemsInstance inst;
 
 
-  public RetrackRollerCommand() {
+  public RunFlyWheelCommand(boolean on) {
     // Use addRequirements() here to declare subsystem dependencies.
     
     inst = SubsystemsInstance.getInstance();
-    addRequirements(inst.m_rollerSubsystem);
+    addRequirements(inst.m_flyWheelSubsystem);
 
+    flyOn = on;
   }
   // Called when the command is initially scheduled.
   @Override
@@ -23,7 +25,7 @@ public class RetrackRollerCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    inst.m_rollerSubsystem.retrackArmWinch();
+    inst.m_flyWheelSubsystem.runFlyWheel(flyOn);
   }
 
   // Called once the command ends or is interrupted.
@@ -34,6 +36,6 @@ public class RetrackRollerCommand extends CommandBase {
   @Override
   public boolean isFinished() {
 
-    return false;
+    return true;
   }
 }
