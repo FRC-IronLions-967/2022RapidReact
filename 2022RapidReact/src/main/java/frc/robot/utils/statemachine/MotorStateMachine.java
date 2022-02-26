@@ -3,10 +3,10 @@ package frc.robot.utils.statemachine;
 public abstract class MotorStateMachine implements StateMachine {
 
     // stores the power to be outputted to the motor output of this state machine
-    private double motorPower;
+    protected double motorPower;
 
     // stores the maximum power that can be used to drive the motor
-    private double maxMotorPower;
+    protected double maxMotorPower;
 
     /**
      * Constructor.

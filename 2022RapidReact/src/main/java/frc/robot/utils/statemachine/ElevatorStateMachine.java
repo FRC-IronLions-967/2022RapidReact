@@ -4,6 +4,13 @@ public class ElevatorStateMachine extends MotorStateMachine {
     
     // stores the current state of the state machine
     private ElevatorState state;
+    private boolean posUp;
+    private boolean posDown;
+
+    private static final BTN_UP = 0;
+    private static final BTN_DOWN = 1;
+    private static final SW_UP = 2;
+    private static final SW_DOWN = 3;
 
     /**
      * Constructor.
@@ -12,7 +19,7 @@ public class ElevatorStateMachine extends MotorStateMachine {
      */
     public ElevatorStateMachine(double maxMotorPower) {
         super(maxMotorPower);
-
+        motorPower = 0.0;
         state = ElevatorState.RESET;
     }
 
@@ -26,7 +33,54 @@ public class ElevatorStateMachine extends MotorStateMachine {
      * @param inputs an array of boolean representing the inputs to the state machine
      */
     public void updateState(boolean[] inputs) {
-        // TODO implement this
+        switch (state){
+            case RESET:
+                motorPower = 0.0;
+                posUp = inputs[SW_UP];
+                posDown = inputs[SW_DOWN];
+                state = ElevatorState.IDLE;
+                break;
+            
+            case IDLE:
+                motorPower = 0.0;
+                if(inputs[BTN_UP] && !inputs[BTN_DOWN] && !posUp){
+                    state = ElevatorState.MOVING_UP;
+                } else if(inputs[BTN_DOWN] && !inputs[BTN_UP] && !posDown){
+                    state = ElevatorState.MOVING_DOWN;
+                }
+                break;
+            
+            case MOVING_UP:
+                motorPower = maxMotorPower;
+                if (!inputs[BTN_UP]){
+                    state = ElevatorState.IDLE;
+                }else if (inputs[BTN_UP] && inputs[SW_UP]){
+                    state = ElevatorState.UP;
+                }
+                break;
+
+            case UP:
+                motorPower = 0.0;
+                posUp = true;
+                if (!inputs[BTN_UP]){
+                    state = ElevatorState.IDLE;
+                }
+                break;
+
+            case MOVING_DOWN:
+                motorPower = -maxMotorPower;
+                if (!inputs[BTN_DOWN]){
+                    state = ElevatorState.IDLE;
+                }else if (inputs[BTN_DOWN] && inputs[SW_DOWN]){
+                    state = ElevatorState.DOWN;
+                }
+                break;
+
+            case DOWN:
+                motorPower = 0.0;
+                posDown = true;
+                break;
+        }
     }
 
     @Override
@@ -38,8 +92,7 @@ public class ElevatorStateMachine extends MotorStateMachine {
      * @return the expected number of inputs 
      */
     public int getExpectedInputs() {
-        // TODO implement this
-        return 0;
+        return 4;
     }
 
 }
