@@ -28,7 +28,7 @@ public class FlyWheelSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         if (flyWheelON){
-            flyWheel.set(0.8);
+            flyWheel.set(0.85);
         } else {
             flyWheel.set(0.0);
         }
