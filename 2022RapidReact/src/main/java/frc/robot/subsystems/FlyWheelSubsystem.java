@@ -24,7 +24,7 @@ public class FlyWheelSubsystem extends SubsystemBase {
     }
 
     public void changeTheRPM(double changeRPM){
-        flyWheelRPM += changeRPM;
+        flyWheelRPM = changeRPM;
     }
 
     public void runFlyWheel(boolean flyWheelON){
