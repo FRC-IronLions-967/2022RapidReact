@@ -34,9 +34,9 @@ public class IO {
         manipulatorController.whenButtonPressed("RBUMP", new ChangeRPMCommand(0.8));
         manipulatorController.whenButtonPressed("START", new RunFlyWheelCommand(true));
         manipulatorController.whenButtonPressed("SELECT", new RunFlyWheelCommand(false));
-        manipulatorController.whenPOVButtonPressed("N", new RunArmWinchCommand(0.2));
+        manipulatorController.whenPOVButtonPressed("N", new RunArmWinchCommand(0.6));
         manipulatorController.whenPOVButtonReleased("N", new RunArmWinchCommand(0.0));
-        manipulatorController.whenPOVButtonPressed("S", new RunArmWinchCommand(-0.2));
+        manipulatorController.whenPOVButtonPressed("S", new RunArmWinchCommand(-0.6));
         manipulatorController.whenPOVButtonReleased("S", new RunArmWinchCommand(0.0));
         driverController.whenButtonPressed("B", new RewindElevatorCommand(-0.3, true));
         driverController.whenButtonReleased("B", new RewindElevatorCommand(0.0, false));

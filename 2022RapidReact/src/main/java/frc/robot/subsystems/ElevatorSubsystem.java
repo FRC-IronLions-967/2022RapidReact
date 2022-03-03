@@ -61,10 +61,10 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     ioInst = IO.getInstance();
 
-    outRightStateMachine = new ElevatorStateMachine(0.3);
-    inRightStateMachine = new ElevatorStateMachine(0.3);
-    outLeftStateMachine = new ElevatorStateMachine(0.3);
-    inLeftStateMachine = new ElevatorStateMachine(0.3);
+    outRightStateMachine = new ElevatorStateMachine(0.8);
+    inRightStateMachine = new ElevatorStateMachine(0.8);
+    outLeftStateMachine = new ElevatorStateMachine(0.8);
+    inLeftStateMachine = new ElevatorStateMachine(0.8);
 
   }
 
