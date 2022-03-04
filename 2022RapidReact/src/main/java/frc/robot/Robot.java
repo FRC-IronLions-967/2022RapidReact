@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.autonomous.*;
-
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 import frc.robot.utils.replayauto.*;
@@ -29,6 +29,10 @@ public class Robot extends TimedRobot {
   // private ReplayAuto replayAuto;
   private ShootReplayAuto auto;
   private RecorderInstance recordInst;
+  private final Timer m_timer = new Timer();
+  
+  // FlyWheelSubsystem flyAuto = new FlyWheelSubsystem();
+
 
 
   /**
@@ -78,17 +82,32 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
-    auto.init();
+    // m_autoSelected = m_chooser.getSelected();
+    // // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
+    // System.out.println("Auto selected: " + m_autoSelected);
+    // auto.init();
+    m_timer.reset();
+    m_timer.start();
+    
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    auto.periodic();
-
+    // auto.periodic();
+    if(m_timer.get() < 5) {
+      subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
+      // subsystemsInst.m_flyWheelSubsystem.periodic();
+    } else{
+      subsystemsInst.m_flyWheelSubsystem.runFlyWheel(false);
+      // subsystemsInst.m_flyWheelSubsystem.periodic();
+    }
+    if(m_timer.get() > 2 && m_timer.get() < 5){
+      subsystemsInst.m_shooterSubsystem.runKicker(1.0);
+    } else{
+      subsystemsInst.m_shooterSubsystem.runKicker(0.0);
+    }
+    subsystemsInst.m_flyWheelSubsystem.periodic();
   }
 
   /** This function is called once when teleop is enabled. */

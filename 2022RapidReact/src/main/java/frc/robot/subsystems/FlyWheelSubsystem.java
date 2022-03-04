@@ -12,7 +12,7 @@ public class FlyWheelSubsystem extends SubsystemBase {
 
     private CANSparkMax flyWheel;
     private boolean flyWheelON;
-    private double flyWheelRPM = 0.85;
+    private double flyWheelRPM = 0.65;
 
     private RecorderInstance recordInst;
 
@@ -31,6 +31,10 @@ public class FlyWheelSubsystem extends SubsystemBase {
         this.flyWheelON = flyWheelON;
     }
 
+    // public void runAuto(double speed){
+    //     flyWheel.set(speed);
+    // }
+
     @Override
     public void periodic() {
         if (flyWheelON){
@@ -42,7 +46,7 @@ public class FlyWheelSubsystem extends SubsystemBase {
         recordInst.recorder.updateField("flywheelon", flyWheelON);
 
         SmartDashboard.putNumber("Right Current", flyWheel.getOutputCurrent());
-        SmartDashboard.putNumber("Right RPM", flyWheel.getEncoder().getVelocity());
+        SmartDashboard.getNumber("Right RPM", flyWheel.getEncoder().getVelocity());
     }
 
 }

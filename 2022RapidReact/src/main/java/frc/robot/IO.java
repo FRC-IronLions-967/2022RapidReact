@@ -31,7 +31,7 @@ public class IO {
         manipulatorController.whenButtonPressed("Y", new RunShooterCommand(-1.0));
         manipulatorController.whenButtonReleased("Y", new RunShooterCommand(0.0));
         manipulatorController.whenButtonPressed("LBUMP", new ChangeRPMCommand(0.35));
-        manipulatorController.whenButtonPressed("RBUMP", new ChangeRPMCommand(0.8));
+        manipulatorController.whenButtonPressed("RBUMP", new ChangeRPMCommand(0.65));
         manipulatorController.whenButtonPressed("START", new RunFlyWheelCommand(true));
         manipulatorController.whenButtonPressed("SELECT", new RunFlyWheelCommand(false));
         manipulatorController.whenPOVButtonPressed("N", new RunArmWinchCommand(0.6));
