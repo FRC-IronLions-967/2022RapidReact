@@ -17,7 +17,7 @@ public class FlyWheelSubsystem extends SubsystemBase {
     private RecorderInstance recordInst;
 
     public FlyWheelSubsystem() {
-        flyWheel = new CANSparkMax(5, MotorType.kBrushless);
+        flyWheel = new CANSparkMax(5, MotorType.kBrushless); 
         recordInst = RecorderInstance.getInstance();
 
         flyWheel.setInverted(true);

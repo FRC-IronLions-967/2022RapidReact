@@ -15,9 +15,12 @@ import frc.robot.commands.*;
 import frc.robot.utils.replayauto.*;
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to
+ * each mode, as described in the TimedRobot documentation. If you change the
+ * name of this class or
+ * the package after creating this project, you must also update the
+ * build.gradle file in the
  * project.
  */
 public class Robot extends TimedRobot {
@@ -30,13 +33,12 @@ public class Robot extends TimedRobot {
   private ShootReplayAuto auto;
   private RecorderInstance recordInst;
   private final Timer m_timer = new Timer();
-  
+
   // FlyWheelSubsystem flyAuto = new FlyWheelSubsystem();
 
-
-
   /**
-   * This function is run when the robot is first started up and should be used for any
+   * This function is run when the robot is first started up and should be used
+   * for any
    * initialization code.
    */
   @Override
@@ -48,8 +50,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("scale", 0.5d);
     SmartDashboard.putNumber("zeroTurn", 0.5d);
 
-
-
     subsystemsInst = SubsystemsInstance.getInstance();
     recordInst = RecorderInstance.getInstance();
 
@@ -57,27 +57,38 @@ public class Robot extends TimedRobot {
   }
 
   /**
-   * This function is called every robot packet, no matter the mode. Use this for items like
-   * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
+   * This function is called every robot packet, no matter the mode. Use this for
+   * items like
+   * diagnostics that you want ran during disabled, autonomous, teleoperated and
+   * test.
    *
-   * <p>This runs after the mode specific periodic functions, but before LiveWindow and
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and
    * SmartDashboard integrated updating.
    */
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
     // recordInst.recorder.recordLine();
-    //remove this line if you arent recording
+    // remove this line if you arent recording
   }
 
   /**
-   * This autonomous (along with the chooser code above) shows how to select between different
-   * autonomous modes using the dashboard. The sendable chooser code works with the Java
-   * SmartDashboard. If you prefer the LabVIEW Dashboard, remove all of the chooser code and
-   * uncomment the getString line to get the auto name from the text box below the Gyro
+   * This autonomous (along with the chooser code above) shows how to select
+   * between different
+   * autonomous modes using the dashboard. The sendable chooser code works with
+   * the Java
+   * SmartDashboard. If you prefer the LabVIEW Dashboard, remove all of the
+   * chooser code and
+   * uncomment the getString line to get the auto name from the text box below the
+   * Gyro
    *
-   * <p>You can add additional auto modes by adding additional comparisons to the switch structure
-   * below with additional strings. If using the SendableChooser make sure to add them to the
+   * <p>
+   * You can add additional auto modes by adding additional comparisons to the
+   * switch structure
+   * below with additional strings. If using the SendableChooser make sure to add
+   * them to the
    * chooser code above as well.
    */
   @Override
@@ -88,24 +99,37 @@ public class Robot extends TimedRobot {
     // auto.init();
     m_timer.reset();
     m_timer.start();
-    
+
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
     // auto.periodic();
-    if(m_timer.get() < 5) {
+    if (m_timer.get() < 5) {
       subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
-      // subsystemsInst.m_flyWheelSubsystem.periodic();
-    } else{
+    } else {
       subsystemsInst.m_flyWheelSubsystem.runFlyWheel(false);
-      // subsystemsInst.m_flyWheelSubsystem.periodic();
     }
-    if(m_timer.get() > 2 && m_timer.get() < 5){
+    if (m_timer.get() > 8 && m_timer.get() < 15) {
       subsystemsInst.m_shooterSubsystem.runKicker(1.0);
-    } else{
+    } else {
       subsystemsInst.m_shooterSubsystem.runKicker(0.0);
+    }
+    if (m_timer.get() > 5 && m_timer.get() < 6) {
+      subsystemsInst.m_driveSubsystem.move(0.2, 0.2);
+    } else {
+      subsystemsInst.m_driveSubsystem.move(0.0, 0.0);
+    }
+    if(m_timer.get() > 5 && m_timer.get() < 6){
+    subsystemsInst.m_rollerSubsystem.runArmWinch(0.8);
+    } else{
+    subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
+    }
+    if(m_timer.get() > 6 && m_timer.get() < 15){
+      subsystemsInst.m_rollerSubsystem.runRoller(1.0);
+    } else{
+      subsystemsInst.m_rollerSubsystem.runRoller(0.0);
     }
     subsystemsInst.m_flyWheelSubsystem.periodic();
   }
@@ -115,29 +139,32 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     IO.getInstance().teleopInit();
     CommandScheduler.getInstance().setDefaultCommand(subsystemsInst.m_driveSubsystem, new ArcadeDriveCommand());
-    
+
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
 
-
   }
 
   /** This function is called once when the robot is disabled. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+  }
 
   /** This function is called periodically when disabled. */
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+  }
 
   /** This function is called once when test mode is enabled. */
   @Override
-  public void testInit() {}
+  public void testInit() {
+  }
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+  }
 }
