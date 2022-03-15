@@ -106,31 +106,42 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     // auto.periodic();
-    if (m_timer.get() < 15) {
+    //Anything with else if comment out for a 2 ball auto
+    if (m_timer.get() < 14) {
       subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
     } else {
       subsystemsInst.m_flyWheelSubsystem.runFlyWheel(false);
     }
-    if (m_timer.get() > 5 && m_timer.get() < 15) {
+    if (m_timer.get() > 5 && m_timer.get() < 8) {
       subsystemsInst.m_shooterSubsystem.runKicker(1.0);
-    } else {
+    } else if (m_timer.get() > 12 && m_timer.get() < 14) {
+      subsystemsInst.m_shooterSubsystem.runKicker(1.0);
+    } else{
       subsystemsInst.m_shooterSubsystem.runKicker(0.0);
     }
     if (m_timer.get() > 2 && m_timer.get() < 3.5) {
       subsystemsInst.m_driveSubsystem.move(0.2, 0.2);
+    } else if(m_timer.get() > 7 && m_timer.get() < 8){
+      subsystemsInst.m_driveSubsystem.move(-0.2, 0.2);
+    } else if(m_timer.get() > 8.2 && m_timer.get() < 9.2){
+      subsystemsInst.m_driveSubsystem.move(0.3, 0.3);
+    } else if(m_timer.get() > 9.2 && m_timer.get() < 10.2){
+      subsystemsInst.m_driveSubsystem.move(0.2, -0.2);
     } else {
       subsystemsInst.m_driveSubsystem.move(0.0, 0.0);
     }
-    if(m_timer.get() > 5 && m_timer.get() < 6){
-    subsystemsInst.m_rollerSubsystem.runArmWinch(0.8);
-    } else{
-    subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
-    }
-    if(m_timer.get() > 3 && m_timer.get() < 15){
+    // if(m_timer.get() > 5 && m_timer.get() < 6){
+    // subsystemsInst.m_rollerSubsystem.runArmWinch(0.8);
+    // } else{
+    // subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
+    // }
+    if(m_timer.get() > 3 && m_timer.get() < 14){
       subsystemsInst.m_rollerSubsystem.runRoller(-1.0);
     } else{
       subsystemsInst.m_rollerSubsystem.runRoller(0.0);
     }
+
+    
     subsystemsInst.m_flyWheelSubsystem.periodic();
   }
 
