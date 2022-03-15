@@ -26,6 +26,8 @@ import frc.robot.utils.replayauto.*;
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
+  private static final String k2ballAuto = "2 ball";
+  private static final String k3ballAuto = "3 ball";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private SubsystemsInstance subsystemsInst;
@@ -45,6 +47,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
+    m_chooser.addOption("2 ball auto", k2ballAuto);
+    m_chooser.addOption("3 ball auto", k3ballAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("maxAccel", 0.02d);
     SmartDashboard.putNumber("scale", 0.5d);
@@ -105,52 +109,103 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+    if(m_chooser.getSelected() == k3ballAuto){
+      System.out.println("3 ball ACTIVATE");
+      threeBall();
+    } else if(m_chooser.getSelected() == k2ballAuto){
+      System.out.println("2 ball ACTIVATE");
+      twoBall();
+    }
+  }
+
+  public void twoBall() {
+
     // auto.periodic();
-    //Anything with else if comment out for a 2 ball auto
+    // Anything with else if comment out for a 2 ball auto
     if (m_timer.get() < 2) {
-      subsystemsInst.m_flyWheelSubsystem.changeTheRPM(.62);
-      subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
-    } else if (m_timer.get() > 2 && m_timer.get() < 14) {
-      subsystemsInst.m_flyWheelSubsystem.changeTheRPM(.75);
-      subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
-    } else {
-      subsystemsInst.m_flyWheelSubsystem.runFlyWheel(false);
-    }
-    
-    if(m_timer.get() > 1 && m_timer.get() < 4) {
-      subsystemsInst.m_shooterSubsystem.runKicker(1.0);
-    } else if (m_timer.get() > 4 && m_timer.get() < 8) {
-      subsystemsInst.m_shooterSubsystem.runKicker(1.0);
-    } else if (m_timer.get() > 12 && m_timer.get() < 14) {
-      subsystemsInst.m_shooterSubsystem.runKicker(1.0);
-    } else{
-      subsystemsInst.m_shooterSubsystem.runKicker(0.0);
-    }
-    if (m_timer.get() > 2 && m_timer.get() < 3.5) {
-      subsystemsInst.m_driveSubsystem.move(0.2, 0.2);
-    } else if(m_timer.get() > 7 && m_timer.get() < 8){
-      subsystemsInst.m_driveSubsystem.move(-0.2, 0.2);
-    } else if(m_timer.get() > 8.2 && m_timer.get() < 9.2){
-      subsystemsInst.m_driveSubsystem.move(0.3, 0.3);
-    } else if(m_timer.get() > 9.2 && m_timer.get() < 10.2){
-      subsystemsInst.m_driveSubsystem.move(0.2, -0.2);
-    } else {
-      subsystemsInst.m_driveSubsystem.move(0.0, 0.0);
-    }
-    // if(m_timer.get() > 5 && m_timer.get() < 6){
-    // subsystemsInst.m_rollerSubsystem.runArmWinch(0.8);
-    // } else{
-    // subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
-    // }
-    if(m_timer.get() > 3 && m_timer.get() < 14){
-      subsystemsInst.m_rollerSubsystem.runRoller(-1.0);
-    } else{
-      subsystemsInst.m_rollerSubsystem.runRoller(0.0);
+        subsystemsInst.m_flyWheelSubsystem.changeTheRPM(.62);
+        subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
+      } else if (m_timer.get() > 2 && m_timer.get() < 14) {
+        subsystemsInst.m_flyWheelSubsystem.changeTheRPM(.75);
+        subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
+      } else {
+        subsystemsInst.m_flyWheelSubsystem.runFlyWheel(false);
+      }
+      
+      if(m_timer.get() > 1 && m_timer.get() < 10) {
+        subsystemsInst.m_shooterSubsystem.runKicker(1.0);
+      }  else{
+        subsystemsInst.m_shooterSubsystem.runKicker(0.0);
+      }
+      if (m_timer.get() > 2 && m_timer.get() < 3.5) {
+        subsystemsInst.m_driveSubsystem.move(0.2, 0.2);
+      }else {
+        subsystemsInst.m_driveSubsystem.move(0.0, 0.0);
+      }
+      // if(m_timer.get() > 5 && m_timer.get() < 6){
+      // subsystemsInst.m_rollerSubsystem.runArmWinch(0.8);
+      // } else{
+      // subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
+      // }
+      if(m_timer.get() > 1 && m_timer.get() < 14){
+        subsystemsInst.m_rollerSubsystem.runRoller(-1.0);
+      } else{
+        subsystemsInst.m_rollerSubsystem.runRoller(0.0);
+      }
+  
+      
+      subsystemsInst.m_flyWheelSubsystem.periodic();
     }
 
-    
-    subsystemsInst.m_flyWheelSubsystem.periodic();
-  }
+    public void threeBall(){
+        
+    // auto.periodic();
+    // Anything with else if comment out for a 2 ball auto
+    if (m_timer.get() < 2) {
+        subsystemsInst.m_flyWheelSubsystem.changeTheRPM(.62);
+        subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
+      } else if (m_timer.get() > 2 && m_timer.get() < 14) {
+        subsystemsInst.m_flyWheelSubsystem.changeTheRPM(.75);
+        subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
+      } else {
+        subsystemsInst.m_flyWheelSubsystem.runFlyWheel(false);
+      }
+      
+      if(m_timer.get() > 1 && m_timer.get() < 4) {
+        subsystemsInst.m_shooterSubsystem.runKicker(1.0);
+      } else if (m_timer.get() > 4 && m_timer.get() < 8) {
+        subsystemsInst.m_shooterSubsystem.runKicker(1.0);
+      } else if (m_timer.get() > 12 && m_timer.get() < 14) {
+        subsystemsInst.m_shooterSubsystem.runKicker(1.0);
+      } else{
+        subsystemsInst.m_shooterSubsystem.runKicker(0.0);
+      }
+      if (m_timer.get() > 2 && m_timer.get() < 3.5) {
+        subsystemsInst.m_driveSubsystem.move(0.2, 0.2);
+      } else if(m_timer.get() > 7 && m_timer.get() < 8){
+        subsystemsInst.m_driveSubsystem.move(-0.2, 0.2);
+      } else if(m_timer.get() > 8.2 && m_timer.get() < 9.2){
+        subsystemsInst.m_driveSubsystem.move(0.3, 0.3);
+      } else if(m_timer.get() > 9.2 && m_timer.get() < 10.2){
+        subsystemsInst.m_driveSubsystem.move(0.2, -0.2);
+      } else {
+        subsystemsInst.m_driveSubsystem.move(0.0, 0.0);
+      }
+      // if(m_timer.get() > 5 && m_timer.get() < 6){
+      // subsystemsInst.m_rollerSubsystem.runArmWinch(0.8);
+      // } else{
+      // subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
+      // }
+      if(m_timer.get() > 3 && m_timer.get() < 14){
+        subsystemsInst.m_rollerSubsystem.runRoller(-1.0);
+      } else{
+        subsystemsInst.m_rollerSubsystem.runRoller(0.0);
+      }
+  
+      
+      subsystemsInst.m_flyWheelSubsystem.periodic();
+    }
+
 
   /** This function is called once when teleop is enabled. */
   @Override
