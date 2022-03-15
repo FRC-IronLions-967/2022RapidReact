@@ -25,9 +25,10 @@ import frc.robot.utils.replayauto.*;
  */
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
+  private static final String kCustomAuto = "Test Auto";
   private static final String k2ballAuto = "2 ball";
   private static final String k3ballAuto = "3 ball";
+  private static final String k3ballAutoAttack = "ATTACK 3 ball";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   private SubsystemsInstance subsystemsInst;
@@ -46,9 +47,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
+    m_chooser.addOption("Test Auto", kCustomAuto);
     m_chooser.addOption("2 ball auto", k2ballAuto);
     m_chooser.addOption("3 ball auto", k3ballAuto);
+    m_chooser.addOption("ATTACK 3 ball", k3ballAutoAttack);
     SmartDashboard.putData("Auto choices", m_chooser);
     SmartDashboard.putNumber("maxAccel", 0.02d);
     SmartDashboard.putNumber("scale", 0.5d);
@@ -115,7 +117,18 @@ public class Robot extends TimedRobot {
     } else if(m_chooser.getSelected() == k2ballAuto){
       System.out.println("2 ball ACTIVATE");
       twoBall();
+    } else if(m_chooser.getSelected() == kCustomAuto){
+      testAuto();
+    }else if(m_chooser.getSelected() == k3ballAutoAttack){
+      //add attack when ready
     }
+  }
+  public void testAuto(){
+    if(m_timer.get() > 1 && m_timer.get() < 1.2){
+      subsystemsInst.m_rollerSubsystem.runArmWinch(-1.0);
+      } else{
+      subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
+      }
   }
 
   public void twoBall() {
@@ -142,11 +155,11 @@ public class Robot extends TimedRobot {
       }else {
         subsystemsInst.m_driveSubsystem.move(0.0, 0.0);
       }
-      // if(m_timer.get() > 5 && m_timer.get() < 6){
-      // subsystemsInst.m_rollerSubsystem.runArmWinch(0.8);
-      // } else{
-      // subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
-      // }
+      if(m_timer.get() > 1 && m_timer.get() < 1.2){
+        subsystemsInst.m_rollerSubsystem.runArmWinch(-1.0);
+        } else{
+        subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
+        }
       if(m_timer.get() > 1 && m_timer.get() < 14){
         subsystemsInst.m_rollerSubsystem.runRoller(-1.0);
       } else{
@@ -191,11 +204,11 @@ public class Robot extends TimedRobot {
       } else {
         subsystemsInst.m_driveSubsystem.move(0.0, 0.0);
       }
-      // if(m_timer.get() > 5 && m_timer.get() < 6){
-      // subsystemsInst.m_rollerSubsystem.runArmWinch(0.8);
-      // } else{
-      // subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
-      // }
+      if(m_timer.get() > 1 && m_timer.get() < 1.2){
+        subsystemsInst.m_rollerSubsystem.runArmWinch(-1.0);
+        } else{
+        subsystemsInst.m_rollerSubsystem.runArmWinch(0.0);
+        }
       if(m_timer.get() > 3 && m_timer.get() < 14){
         subsystemsInst.m_rollerSubsystem.runRoller(-1.0);
       } else{
@@ -206,7 +219,7 @@ public class Robot extends TimedRobot {
       subsystemsInst.m_flyWheelSubsystem.periodic();
     }
 
-
+    
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
