@@ -107,12 +107,19 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     // auto.periodic();
     //Anything with else if comment out for a 2 ball auto
-    if (m_timer.get() < 14) {
+    if (m_timer.get() < 3) {
+      subsystemsInst.m_flyWheelSubsystem.changeTheRPM(.62);
+      subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
+    } else if (m_timer.get() > 3 && m_timer.get() < 14) {
+      subsystemsInst.m_flyWheelSubsystem.changeTheRPM(.75);
       subsystemsInst.m_flyWheelSubsystem.runFlyWheel(true);
     } else {
       subsystemsInst.m_flyWheelSubsystem.runFlyWheel(false);
     }
-    if (m_timer.get() > 5 && m_timer.get() < 8) {
+    
+    if(m_timer.get() > 1 && m_timer.get() < 4) {
+      subsystemsInst.m_shooterSubsystem.runKicker(1.0);
+    } else if (m_timer.get() > 5 && m_timer.get() < 8) {
       subsystemsInst.m_shooterSubsystem.runKicker(1.0);
     } else if (m_timer.get() > 12 && m_timer.get() < 14) {
       subsystemsInst.m_shooterSubsystem.runKicker(1.0);
